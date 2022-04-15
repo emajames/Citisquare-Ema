@@ -27,6 +27,10 @@ export default [
     path: "/search",
     name: "Search",
     component: Search,
+
+    meta: { layout: "default" },
+  },
+  {
     path: "/search-results",
     name: "SearchResults",
     component: SearchResults,
@@ -36,6 +40,6 @@ export default [
     path: "/payment",
     name: "Payment",
     component: Payment,
-    meta: { layout: "default"},
+    meta: { layout: "default" },
   },
 ];

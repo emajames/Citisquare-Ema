@@ -18,7 +18,7 @@ export default function () {
       baseURL: `${config.baseUrl}`,
       headers: {
         authorization: "Bearer " + token,
-        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         "Access-Control-Max-Age": 600,
       },
