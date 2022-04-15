@@ -122,7 +122,7 @@
         </div>
       </form>
       <div class="footsie">
-        <a href="/Merchantsignup"
+        <a href="/signup-merchant"
           ><button class="sign_btn mt-1">Sign Up As A Merchant</button></a
         >
       </div>

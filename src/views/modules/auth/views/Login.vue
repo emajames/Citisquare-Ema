@@ -94,10 +94,14 @@
           <button class="create_btn mt-4">Sign In</button>
         </div>
 
+        
+      </form>
+      <div class="form3">
         <div>
-          <button class="sign_btn mt-1" @click="move()">
+          <a href="/sign-up">
+          <button class="sign_btn mt-1" >
             Sign Up As A Customer
-          </button>
+          </button></a>
         </div>
 
         <p
@@ -137,7 +141,7 @@
             />Sign in with Apple
           </button>
         </div>
-      </form>
+      </div>
     </section>
 
     <footer class="container">
@@ -313,6 +317,17 @@ footer {
 form {
   padding-left: 15px;
   padding-right: 15px;
+}
+.form3{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.form3 input{
+   background: #ffffff;
+  border: 0.75px solid #cad4dd;
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px 5px;
 }
 .form {
   width: 30rem;

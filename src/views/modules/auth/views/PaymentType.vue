@@ -25,7 +25,7 @@
            <div class="personal_info">
                <div>
                     <div><img src="@/assets/tick.svg" alt="">  Personal Information</div>
-                    <div class="pt-3"><img src="@/assets/tick-circle.svg" alt="">  Payment Type</div>
+                    <div class="pt-3"><img src="@/assets/tick.svg" alt=""> Payment Type</div>
                     <div class="pt-3"><img src="@/assets/tick-circle.svg" alt="">  Payment Gateway</div>
                     <div class="pt-3"><img src="@/assets/tick-circle.svg" alt="">  Confirmation</div>
                </div>

@@ -104,7 +104,7 @@
 
       <div class="footsie">
         <div>
-          <a href="/createaccount"
+          <a href="/sign-up"
             ><button class="sign_btn mt-1">Sign Up As A Customer</button></a
           >
         </div>
