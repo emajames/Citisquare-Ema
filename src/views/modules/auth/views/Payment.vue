@@ -12,7 +12,7 @@
 
           <div class="dakada">
               <h1>Dakada Estate</h1>
-              <p>Airpotr road, Uyo Akwa Ibom State</p>
+              <p>Airport road, Uyo Akwa Ibom State</p>
           </div>
           <div class="amount">
               <h1>NGN 100,000,00</h1>
@@ -31,7 +31,7 @@
                </div>
              <div>
                 <h6 class="info">Personal Information</h6>
-                <p>Information that will be attached to the ownership document</p>
+                <p>Information that will be attached to the ownership documents</p>
              <div>
                  <label for="" class="who">Who is this property for</label>
                  <select class="form-select" aria-label="Default select example">
@@ -227,6 +227,9 @@ input{
     font-size: 16px;
     color:  #1686C1;
     padding-top: 1rem;
+}
+.dakada p{
+    font-size: 15px;
 }
 }
 

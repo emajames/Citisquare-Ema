@@ -199,9 +199,7 @@ export default {
   padding-top: 6px;
 }
 
-* {
-  /* font-family: "Nunito Sans", sans-serif; */
-}
+
 
 .invest-section {
   margin-left: 25rem;

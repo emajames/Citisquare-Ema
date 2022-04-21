@@ -19,8 +19,8 @@ export default function () {
       headers: {
         authorization: "Bearer " + token,
         // "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        "Access-Control-Max-Age": 600,
+        // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        // "Access-Control-Max-Age": 600,
       },
     });
   } else {
