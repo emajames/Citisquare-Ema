@@ -42,7 +42,7 @@
         <!-- <p>Please enter the email associated with your account and we’ll send an email with instructions to reset your password.</p> -->
       </div>
 
-      <form method="post">
+      <form @submit.prevent="signUp">
         <div>
           <button class="google_btn">
             <img class="google_img" src="@/assets/Glogo.png" alt="" />Sign up
@@ -87,18 +87,96 @@
 
         <div class="inputContainer mt-5">
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
-          <input class="Field" type="text" placeholder="Your Email" />
+          <input
+            class="Field"
+            type="text"
+            placeholder="First name"
+            v-model="signupDetails.first_name"
+            requied
+          />
+          <br />
+        </div>
+        <p class="text-danger" v-if="errors.first_name">
+          {{ errors.first_name[0] }}
+        </p>
+        <div class="inputContainer mt-4">
+          <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
+          <input
+            class="Field"
+            type="text"
+            placeholder="Last Name"
+            v-model="signupDetails.last_name"
+            requied
+          />
+        </div>
+        <p class="text-danger" v-if="errors.last_name">
+          {{ errors.last_name[0] }}
+        </p>
+        <div class="inputContainer mt-4">
+          <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
+          <input
+            class="Field"
+            type="email"
+            placeholder="Email address"
+            v-model="signupDetails.email"
+            requied
+          />
+        </div>
+        <p class="text-danger" v-if="errors.email">
+          {{ errors.email[0] }}
+        </p>
+        <div class="inputContainer mt-4">
+          <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
+          <input
+            class="Field"
+            type="text"
+            placeholder="Username"
+            v-model="signupDetails.username"
+            requied
+          />
         </div>
         <div class="inputContainer mt-4">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
-          <input class="Field" type="text" placeholder="Your Phone" />
+          <input
+            class="Field"
+            type="password"
+            placeholder="Password"
+            v-model="signupDetails.password"
+            requied
+          />
+        </div>
+        <p class="text-danger" v-if="errors.password">
+          {{ errors.password[0] }}
+        </p>
+        <div class="inputContainer mt-4">
+          <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
+          <input
+            class="Field"
+            type="password"
+            placeholder="Confirm Password"
+            v-model="signupDetails.re_password"
+            requied
+          />
+        </div>
+        <p class="text-danger" v-if="errors.re_password">
+          {{ errors.re_password[0] }}
+        </p>
+        <div class="inputContainer mt-4">
+          <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
+          <input
+            class="Field"
+            type="number"
+            placeholder="Phone"
+            v-model="signupDetails.phone_number"
+            requied
+          />
         </div>
         <!-- <div class="inputContainer mt-4">
                <FontAwesomeIcon :icon="['fas', 'phone']" class="icon"/>
                <input class="Field" type="text" placeholder="Select merchant category"/>
           </div> -->
 
-        <div class="inputContainer mt-4">
+        <!-- <div class="inputContainer mt-4">
           <FontAwesomeIcon :icon="['fas', 'lock']" class="icon" />
           <input class="Field" type="text" placeholder="Password" />
           <span class="eye">
@@ -108,7 +186,7 @@
               class="icon"
             />
           </span>
-        </div>
+        </div> -->
 
         <div class="checkbox d-flex align-items-center mt-4">
           <input type="checkbox" id="cb1" />
@@ -142,13 +220,17 @@
       </div>
     </footer>
   </section>
+  {{ errors }}
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      signupDetails: {},
+      errors: "",
+    };
   },
 
   computed: {
@@ -157,7 +239,25 @@ export default {
 
   methods: {
     ...mapActions("auth", ["login"]),
+    ...mapActions("auth", ["signUpUser"]),
+    async signUp() {
+      try {
+        let res = await this.signUpUser(this.signupDetails);
+        console.log(res);
+        this.signupDetails = {};
+        this.errors = "";
+        this.makeToast(
+          "Sign up Successful",
+          `Welcome, ${res.data.last_name}`,
+          "success"
+        );
+      } catch (error) {
+        console.log(error.response);
+        this.errors = error.response.data;
+      }
+    },
   },
+  created() {},
 };
 </script>
 

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 // import store from '../store'
 
 import authRoutes from "../views/modules/auth/router/index";
+import dashboardRoutes from "../views/modules/dashboard/router/index";
 import Home from "../views/Home.vue";
 
 const baseRoutes = [
@@ -14,7 +15,7 @@ const baseRoutes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes: baseRoutes.concat(authRoutes),
+  routes: baseRoutes.concat(authRoutes, dashboardRoutes),
 });
 
 export default router;
