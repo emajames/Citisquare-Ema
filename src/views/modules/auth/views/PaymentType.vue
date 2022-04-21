@@ -12,7 +12,7 @@
 
           <div class="dakada">
               <h1>Dakada Estate</h1>
-              <p>Airpotr road, Uyo Akwa Ibom State</p>
+              <p>Airport road, Uyo Akwa Ibom State</p>
           </div>
           <div class="amount">
               <h1>NGN 100,000,00</h1>
@@ -30,20 +30,29 @@
                     <div class="pt-3"><img src="@/assets/tick-circle.svg" alt="">  Confirmation</div>
                </div>
              <div>
-                <h6 class="info">Personal Information</h6>
-                <p>Information that will be attached to the ownership document</p>
+                <h6 class="info pt-1">Personal Information</h6>
+                <p>Information that will be attached to the ownership documents</p>
              <div>
-                 <label for="" class="who">Who is this property for</label>
+                 <label for="" class="who">Purpose of Purchase</label>
+                 <select class="form-select mb-3" aria-label="Default select example">
+                 <option selected>Third Party</option>
+               </select>
+                </div>
+
+               <div>
+                 <label for="" class="who">Payment Plan</label>
+                 <select class="form-select mb-3" aria-label="Default select example">
+                 <option selected>Third Party</option>
+               </select>
+               </div>
+
+                <div>
+                 <label for="" class="who">Purpose of Purchase</label>
                  <select class="form-select" aria-label="Default select example">
                  <option selected>Third Party</option>
                </select>
-
-               <div class="checkbox d-flex align-items-center mt-3">
-                  <input type="checkbox" id="cb1" />
-                 <label for="cb1" class="check_text">
-                 Retain property in my name</label>
-              </div>
-              <div>
+                </div>
+              <!-- <div>
                   <label for="" class="who pt-3">Full name of third party</label>
                   <input class="names" type="text" placeholder="">
                   
@@ -51,11 +60,10 @@
               <div>
                  <label for="" class="who pt-3">Phone number of the third party</label>
                  <input class="names" type="text" placeholder="">
-              </div>
+              </div> -->
               <button class="save">Save and Continue</button>
-             </div>
-             </div>
-             
+            
+             </div>  
            </div>
        </div>
   </div>
@@ -166,7 +174,7 @@ input{
     width: 45%;
     color: #fff;
     background: #2594D9;
-    border-radius: 2px;
+    border-radius: 5px;
     width: 362px;
     height: 45px;
     border: none;
@@ -189,6 +197,9 @@ input{
     height: 100%;
     width: 100%;
     text-align: center;
+}
+.dakada p{
+    font-size: 15px;
 }
 .small_huz img{
     width: 100%;

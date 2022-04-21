@@ -4,6 +4,14 @@ const RegisterMerchant = () => import("../views/MerchantSignup.vue");
 const Search = () => import("../views/Search.vue");
 const SearchResults = () => import("../views/SearchResults.vue");
 const Payment = () => import("../views/Payment.vue");
+const UserDashboard = () => import("../views/UserDashboard/dashboard.vue");
+const MerchantDashboard = () => import("../views/MerchantDashboard/dashboard.vue");
+const KycProfile = () => import("../views/MerchantDashboard/kycprofile.vue");
+const KycContact = () => import("../views/MerchantDashboard/kyccontact.vue");
+const KycBusiness = () => import("../views/MerchantDashboard/kycbusiness.vue");
+const KycSuccess = () => import("../views/MerchantDashboard/kycsuccess.vue");
+const ProductDetail = () => import("../views/MerchantDashboard/productdetail.vue");
+const PaymentType = () => import("../views/PaymentType.vue");
 export default [
   {
     path: "/sign-up",
@@ -27,6 +35,8 @@ export default [
     path: "/search",
     name: "Search",
     component: Search,
+    path: "/search",
+    
 
     meta: { layout: "default" },
   },
@@ -41,5 +51,53 @@ export default [
     name: "Payment",
     component: Payment,
     meta: { layout: "default" },
+  },
+  {
+    path: "/paymenttype",
+    name: "paymenttype",
+    component: PaymentType,
+    meta: { layout: "default" },
+  },
+  {
+    path: "/userdashboard/dashboard",
+    name: "UserDashboard",
+    component: UserDashboard,
+    meta: { layout: "default"},
+  },
+  {
+    path: "/merchantdashboard/dashboard",
+    name: "MerchantDashboard",
+    component: MerchantDashboard,
+    meta: { layout: "default"},
+  },
+  {
+    path: "/merchantdashboard/kycprofile",
+    name: "KycProfile",
+    component: KycProfile,
+    meta: { layout: "default"},
+  },
+  {
+    path: "/merchantdashboard/kyccontact",
+    name: "KycContact",
+    component: KycContact,
+    meta: { layout: "default"},
+  },
+  {
+    path: "/merchantdashboard/kycbusiness",
+    name: "KycBusiness",
+    component: KycBusiness,
+    meta: { layout: "default"},
+  },
+  {
+    path: "/merchantdashboard/kycsuccess",
+    name: "KycSuccess",
+    component: KycSuccess,
+    meta: { layout: "default"},
+  },
+  {
+    path: "/merchantdashboard/productdetail",
+    name: "ProductDetail",
+    component: ProductDetail,
+    meta: { layout: "default"},
   },
 ];
