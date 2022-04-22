@@ -97,7 +97,7 @@
             {{ msg }}
           </p>
         </div>
-        <div class="inputContainer mt-4 flex-column">
+        <!-- <div class="inputContainer mt-4 flex-column">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
           <input
             class="Field"
@@ -114,19 +114,19 @@
           >
             {{ msg }}
           </p>
-        </div>
+        </div> -->
         <div class="inputContainer mt-4 flex-column">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
           <input
             class="Field"
             type="text"
-            placeholder="Select merchant category"
-            v-model="signUpDetails.merchant"
+            placeholder="Business Name"
+            v-model="signUpDetails.merchant.business_name"
           />
           <p
             class="text-danger small mb-1"
             v-if="errMsg"
-            v-for="msg in errMsg.merchant"
+            v-for="msg in errMsg.merchant.business_name"
             :key="msg"
           >
             {{ msg }}
@@ -229,7 +229,9 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      signUpDetails: {},
+      signUpDetails: {
+        merchant : {business_name:''}
+      },
       errMsg: null,
     };
   },
@@ -238,6 +240,7 @@ export default {
     ...mapActions("auth", ["signUpMerchant"]),
 
     async signUp() {
+      console.log(this.signUpDetails.merchant.business_name)
       try {
         let res = await this.signUpMerchant(this.signUpDetails);
         this.$router.push("/");
