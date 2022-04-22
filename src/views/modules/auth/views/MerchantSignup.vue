@@ -43,7 +43,43 @@
       </div>
 
       <form @submit.prevent="signUp">
-        <div class="inputContainer">
+        <div class="inputContainer flex-column">
+          <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
+          <input
+            class="Field"
+            type="text"
+            placeholder="First name"
+            v-model="signUpDetails.first_name"
+            required
+          />
+          <p
+            class="text-danger small mb-1"
+            v-if="errMsg"
+            v-for="msg in errMsg.first_name"
+            :key="msg"
+          >
+            {{ msg }}
+          </p>
+        </div>
+        <div class="inputContainer flex-column mt-4">
+          <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
+          <input
+            class="Field"
+            type="text"
+            placeholder="Last name"
+            v-model="signUpDetails.last_name"
+            required
+          />
+          <p
+            class="text-danger small mb-1"
+            v-if="errMsg"
+            v-for="msg in errMsg.last_name"
+            :key="msg"
+          >
+            {{ msg }}
+          </p>
+        </div>
+        <div class="inputContainer flex-column mt-4">
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
           <input
             class="Field"
@@ -52,8 +88,16 @@
             v-model="signUpDetails.email"
             required
           />
+          <p
+            class="text-danger small mb-1"
+            v-if="errMsg"
+            v-for="msg in errMsg.email"
+            :key="msg"
+          >
+            {{ msg }}
+          </p>
         </div>
-        <div class="inputContainer mt-4">
+        <div class="inputContainer mt-4 flex-column">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
           <input
             class="Field"
@@ -62,17 +106,34 @@
             v-model="signUpDetails.phone_number"
             required
           />
+          <p
+            class="text-danger small mb-1"
+            v-if="errMsg"
+            v-for="msg in errMsg.phone"
+            :key="msg"
+          >
+            {{ msg }}
+          </p>
         </div>
-        <div class="inputContainer mt-4">
+        <div class="inputContainer mt-4 flex-column">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
           <input
             class="Field"
             type="text"
             placeholder="Select merchant category"
+            v-model="signUpDetails.merchant"
           />
+          <p
+            class="text-danger small mb-1"
+            v-if="errMsg"
+            v-for="msg in errMsg.merchant"
+            :key="msg"
+          >
+            {{ msg }}
+          </p>
         </div>
 
-        <div class="inputContainer mt-4">
+        <div class="inputContainer mt-4 flex-column">
           <FontAwesomeIcon :icon="['fas', 'lock']" class="icon" />
           <input
             class="Field"
@@ -81,6 +142,15 @@
             v-model="signUpDetails.password"
             required
           />
+          <p
+            class="text-danger"
+            v-if="errMsg"
+            v-for="msg in errMsg.password"
+            :key="msg"
+          >
+            {{ msg }}
+          </p>
+
           <span class="eye">
             <FontAwesomeIcon :icon="['fa-solid', 'fa-eye']" class="icon" />
             <FontAwesomeIcon
@@ -160,17 +230,26 @@ export default {
   data() {
     return {
       signUpDetails: {},
+      errMsg: null,
     };
   },
 
   methods: {
     ...mapActions("auth", ["signUpMerchant"]),
 
-    signUp() {
+    async signUp() {
       try {
-        this.signUpMerchant(this.signUpDetails);
+        let res = await this.signUpMerchant(this.signUpDetails);
+        this.$router.push("/");
+        console.log(res);
+        this.makeToast(
+          "Sign up Successful",
+          `Welcome, ${res.data.last_name}`,
+          "success"
+        );
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
+        this.errMsg = error.response.data;
       }
     },
   },

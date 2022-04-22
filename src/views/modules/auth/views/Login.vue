@@ -40,6 +40,7 @@
       <div class="form1">
         <h2 class="create pb-4 pb-4">Sign In</h2>
         <!-- <p>Please enter the email associated with your account and we’ll send an email with instructions to reset your password.</p> -->
+        <p class="text-danger" v-if="errorMsg">{{ errorMsg }}</p>
       </div>
 
       <form @submit.prevent="logUserIn">
@@ -93,15 +94,12 @@
         <div>
           <button class="create_btn mt-4">Sign In</button>
         </div>
-
-        
       </form>
       <div class="form3">
         <div>
           <a href="/sign-up">
-          <button class="sign_btn mt-1" >
-            Sign Up As A Customer
-          </button></a>
+            <button class="sign_btn mt-1">Sign Up As A Customer</button></a
+          >
         </div>
 
         <p
@@ -163,6 +161,7 @@ export default {
   data() {
     return {
       loginDetails: {},
+      errorMsg: null,
     };
   },
   computed: {
@@ -172,11 +171,14 @@ export default {
   methods: {
     ...mapActions("auth", ["login"]),
 
-    logUserIn() {
+    async logUserIn() {
+      this.errorMsg = null;
       try {
-        this.login(this.loginDetails);
+        let res = await this.login(this.loginDetails);
+        console.log(res);
       } catch (error) {
-        console.log(error);
+        console.log(error.response.data.non_field_errors[0]);
+        this.errorMsg = error.response.data.non_field_errors[0];
       }
     },
   },
@@ -318,12 +320,12 @@ form {
   padding-left: 15px;
   padding-right: 15px;
 }
-.form3{
+.form3 {
   padding-left: 15px;
   padding-right: 15px;
 }
-.form3 input{
-   background: #ffffff;
+.form3 input {
+  background: #ffffff;
   border: 0.75px solid #cad4dd;
   width: 100%;
   border-radius: 5px;

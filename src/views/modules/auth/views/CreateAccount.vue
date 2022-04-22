@@ -96,8 +96,12 @@
           />
           <br />
         </div>
-        <p class="text-danger" v-if="errors.first_name">
-          {{ errors.first_name[0] }}
+        <p
+          class="text-danger"
+          v-if="errors.first_name"
+          v-for="err in errors.first_name"
+        >
+          {{ err }}
         </p>
         <div class="inputContainer mt-4">
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
@@ -109,8 +113,12 @@
             requied
           />
         </div>
-        <p class="text-danger" v-if="errors.last_name">
-          {{ errors.last_name[0] }}
+        <p
+          class="text-danger"
+          v-if="errors.last_name"
+          v-for="err in errors.last_name"
+        >
+          {{ err }}
         </p>
         <div class="inputContainer mt-4">
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
@@ -122,8 +130,8 @@
             requied
           />
         </div>
-        <p class="text-danger" v-if="errors.email">
-          {{ errors.email[0] }}
+        <p class="text-danger" v-if="errors.email" v-for="err in errors.email">
+          {{ err }}
         </p>
         <div class="inputContainer mt-4">
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
@@ -135,6 +143,14 @@
             requied
           />
         </div>
+        <p
+          class="text-danger small mb-1"
+          v-if="errors.username"
+          v-for="msg in errors.username"
+          :key="msg"
+        >
+          {{ msg }}
+        </p>
         <div class="inputContainer mt-4">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
           <input
@@ -145,8 +161,21 @@
             requied
           />
         </div>
-        <p class="text-danger" v-if="errors.password">
-          {{ errors.password[0] }}
+        <p
+          class="text-danger small mb-1"
+          v-if="errors.password"
+          v-for="msg in errors.password"
+          :key="msg"
+        >
+          {{ msg }}
+        </p>
+        <p
+          class="text-danger small mb-1"
+          v-if="errors.non_field_errors"
+          v-for="msg in errors.non_field_errors"
+          :key="msg"
+        >
+          {{ msg }}
         </p>
         <div class="inputContainer mt-4">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
@@ -158,6 +187,14 @@
             requied
           />
         </div>
+        <p
+          class="text-danger small mb-1"
+          v-if="errors.non_field_errors"
+          v-for="msg in errors.non_field_errors"
+          :key="msg"
+        >
+          {{ msg }}
+        </p>
         <p class="text-danger" v-if="errors.re_password">
           {{ errors.re_password[0] }}
         </p>
@@ -220,7 +257,6 @@
       </div>
     </footer>
   </section>
-  {{ errors }}
 </template>
 
 <script>
@@ -251,6 +287,7 @@ export default {
           `Welcome, ${res.data.last_name}`,
           "success"
         );
+        this.$router.push("/login");
       } catch (error) {
         console.log(error.response);
         this.errors = error.response.data;
