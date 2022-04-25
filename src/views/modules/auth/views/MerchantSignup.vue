@@ -52,14 +52,17 @@
             v-model="signUpDetails.first_name"
             required
           />
-          <p
+          <div v-if="errMsg">
+            <p
             class="text-danger small mb-1"
-            v-if="errMsg"
+            
             v-for="msg in errMsg.first_name"
             :key="msg"
           >
             {{ msg }}
           </p>
+          </div>
+          
         </div>
         <div class="inputContainer flex-column mt-4">
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
@@ -70,14 +73,16 @@
             v-model="signUpDetails.last_name"
             required
           />
-          <p
+          <div v-if="errMsg">
+            <p
             class="text-danger small mb-1"
-            v-if="errMsg"
-            v-for="msg in errMsg.last_name"
+            
+            v-for="msg in errMsg.first_name"
             :key="msg"
           >
             {{ msg }}
           </p>
+          </div>
         </div>
         <div class="inputContainer flex-column mt-4">
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
@@ -88,14 +93,16 @@
             v-model="signUpDetails.email"
             required
           />
-          <p
+          <div v-if="errMsg">
+            <p
             class="text-danger small mb-1"
-            v-if="errMsg"
-            v-for="msg in errMsg.email"
+            
+            v-for="msg in errMsg.first_name"
             :key="msg"
           >
             {{ msg }}
           </p>
+          </div>
         </div>
         <!-- <div class="inputContainer mt-4 flex-column">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
@@ -123,14 +130,16 @@
             placeholder="Business Name"
             v-model="signUpDetails.merchant.business_name"
           />
-          <p
+          <div v-if="errMsg">
+            <p
             class="text-danger small mb-1"
-            v-if="errMsg"
-            v-for="msg in errMsg.merchant.business_name"
+            
+            v-for="msg in errMsg.first_name"
             :key="msg"
           >
             {{ msg }}
           </p>
+          </div>
         </div>
 
         <div class="inputContainer mt-4 flex-column">
@@ -142,14 +151,16 @@
             v-model="signUpDetails.password"
             required
           />
-          <p
-            class="text-danger"
-            v-if="errMsg"
-            v-for="msg in errMsg.password"
+          <div v-if="errMsg">
+            <p
+            class="text-danger small mb-1"
+            
+            v-for="msg in errMsg.first_name"
             :key="msg"
           >
             {{ msg }}
           </p>
+          </div>
 
           <span class="eye">
             <FontAwesomeIcon :icon="['fa-solid', 'fa-eye']" class="icon" />
