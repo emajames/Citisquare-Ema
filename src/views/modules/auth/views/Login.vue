@@ -141,7 +141,6 @@
         </div>
       </div>
     </section>
-
     <footer class="container">
       <div class="footer1">
         <p>Citisquare &#169; Copyright 2021 * All rights reserved</p>
@@ -165,7 +164,8 @@ export default {
     };
   },
   computed: {
-    ...mapState("auth", ["test"]),
+    ...mapState("auth", ["user"]),
+    ...mapState("auth", ["auth_token"]),
   },
 
   methods: {
@@ -176,6 +176,7 @@ export default {
       try {
         let res = await this.login(this.loginDetails);
         console.log(res);
+        this.$router.push("/userdashboard/dashboard");
       } catch (error) {
         console.log(error.response.data.non_field_errors[0]);
         this.errorMsg = error.response.data.non_field_errors[0];

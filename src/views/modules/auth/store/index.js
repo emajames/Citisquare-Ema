@@ -5,14 +5,16 @@ export default {
   namespaced: true,
   state: {
     test: ["hjkh"],
-    auth_token :null
+    auth_token: null,
+    user: null,
   },
 
   // Mutations
   mutations: {
     LOGIN(state, data) {
-      state.auth_token = data
-    }
+      state.user = data.user;
+      state.auth_token = data.auth_token;
+    },
   },
 
   // Actions
