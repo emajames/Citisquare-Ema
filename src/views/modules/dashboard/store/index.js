@@ -46,5 +46,8 @@ export default {
   },
 
   // Getters
-  getters: {},
+  // getters: {
+  //   auth: (state) => state.auth,
+  //   get_auth_token: (state) => state.auth.auth_token,
+  // },
 };

@@ -176,7 +176,17 @@ export default {
       try {
         let res = await this.login(this.loginDetails);
         console.log(res);
-        this.$router.push("/userdashboard/dashboard");
+        this.makeToast(
+          "Login Successful",
+          `Welcome, ${res.data.user.first_name}`,
+          "success"
+        );
+
+        if (res.data.user.is_merchant) {
+          this.$router.push("/merchantdashboard/dashboard");
+        } else {
+          this.$router.push("/userdashboard/dashboard");
+        }
       } catch (error) {
         console.log(error.response.data.non_field_errors[0]);
         this.errorMsg = error.response.data.non_field_errors[0];
