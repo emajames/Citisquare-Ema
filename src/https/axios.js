@@ -7,7 +7,7 @@ export default function () {
   //read and convert to object
   let storeObj = JSON.parse(localStorage.getItem("vuex"));
   if (storeObj && storeObj.auth) {
-    token = storeObj.auth.access_token;
+    token = storeObj.auth.auth_token;
   }
 
   // When sending a request, if there is a token, it needs to be attached to the request header

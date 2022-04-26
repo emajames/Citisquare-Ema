@@ -5,13 +5,18 @@ const Search = () => import("../views/Search.vue");
 const SearchResults = () => import("../views/SearchResults.vue");
 const Payment = () => import("../views/Payment.vue");
 const UserDashboard = () => import("../views/UserDashboard/dashboard.vue");
-const MerchantDashboard = () => import("../views/MerchantDashboard/dashboard.vue");
+const MerchantDashboard = () =>
+  import("../views/MerchantDashboard/dashboard.vue");
 const KycProfile = () => import("../views/MerchantDashboard/kycprofile.vue");
 const KycContact = () => import("../views/MerchantDashboard/kyccontact.vue");
 const KycBusiness = () => import("../views/MerchantDashboard/kycbusiness.vue");
 const KycSuccess = () => import("../views/MerchantDashboard/kycsuccess.vue");
-const ProductDetail = () => import("../views/MerchantDashboard/productdetail.vue");
+const ProductDetail = () =>
+  import("../views/MerchantDashboard/productdetail.vue");
 const PaymentType = () => import("../views/PaymentType.vue");
+
+import store from "@/store/index";
+
 export default [
   {
     path: "/sign-up",
@@ -36,7 +41,6 @@ export default [
     name: "Search",
     component: Search,
     path: "/search",
-    
 
     meta: { layout: "default" },
   },
@@ -62,42 +66,79 @@ export default [
     path: "/userdashboard/dashboard",
     name: "UserDashboard",
     component: UserDashboard,
-    meta: { layout: "default"},
+    async beforeEnter(to, from, next) {
+      try {
+        var hasPermission = await store.getters.get_auth_token;
+        console.log(store.getters.get_auth_token);
+        if (hasPermission) {
+          next();
+        } else {
+          next({
+            name: "Login", // back to safety route //
+            query: { redirectFrom: to.fullPath },
+          });
+        }
+      } catch (e) {
+        next({
+          name: "Login", // back to safety route //
+          query: { redirectFrom: to.fullPath },
+        });
+      }
+    },
   },
   {
     path: "/merchantdashboard/dashboard",
     name: "MerchantDashboard",
     component: MerchantDashboard,
-    meta: { layout: "default"},
+    meta: { layout: "default" },
+    async beforeEnter(to, from, next) {
+      try {
+        var hasPermission = await store.getters.get_auth_token;
+        console.log(store.getters.get_auth_token);
+        if (hasPermission) {
+          next();
+        } else {
+          next({
+            name: "Login", // back to safety route //
+            query: { redirectFrom: to.fullPath },
+          });
+        }
+      } catch (e) {
+        next({
+          name: "Login", // back to safety route //
+          query: { redirectFrom: to.fullPath },
+        });
+      }
+    },
   },
   {
     path: "/merchantdashboard/kycprofile",
     name: "KycProfile",
     component: KycProfile,
-    meta: { layout: "default"},
+    meta: { layout: "default" },
   },
   {
     path: "/merchantdashboard/kyccontact",
     name: "KycContact",
     component: KycContact,
-    meta: { layout: "default"},
+    meta: { layout: "default" },
   },
   {
     path: "/merchantdashboard/kycbusiness",
     name: "KycBusiness",
     component: KycBusiness,
-    meta: { layout: "default"},
+    meta: { layout: "default" },
   },
   {
     path: "/merchantdashboard/kycsuccess",
     name: "KycSuccess",
     component: KycSuccess,
-    meta: { layout: "default"},
+    meta: { layout: "default" },
   },
   {
     path: "/merchantdashboard/productdetail",
     name: "ProductDetail",
     component: ProductDetail,
-    meta: { layout: "default"},
+    meta: { layout: "default" },
   },
 ];
