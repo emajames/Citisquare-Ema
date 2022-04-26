@@ -18,12 +18,14 @@
                 <p>Your merchant account is currently inactive, complete your kyc to change your account status</p>
             </div>
             <div class="dash4">
+                <a href="/merchantdashboard/kycbusiness">
                 <div class="dash41">
                     <img src="@/assets/dashicons/block.svg" alt="">
                     <h5>Complete your KYC</h5>
                     <p>To be able to publish products, it is required that you should complete the KYC process</p>
                     <button>Complete KYC</button>
                 </div>
+                </a>
                 <div class="dash41">
                     <img src="@/assets/dashicons/block.svg" alt="">
                     <h5>Create Products</h5>
@@ -92,6 +94,10 @@
         font-weight: 700;
         color: #000000;
         margin-bottom: 1rem;
+    }
+    a{
+        text-decoration: none;
+        color: #000000;
     }
     .dash3 p{
          font-size: 16px;

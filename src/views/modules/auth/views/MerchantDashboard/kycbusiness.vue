@@ -8,32 +8,62 @@
         <div class="dash2">
             <div class="dash3">
                 <div class="dash4">
-                    <div class="dash41">
+                    <!-- <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p id="profile">Profile</p>
                     </div>
                     <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p>Contact</p>
-                    </div>
+                    </div> -->
                     <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p>Business Info</p>
                     </div>
                     
                 </div>
                 <div class="dash5">
-                    <form method="post">
+                    <form method="post" @submit.prevent="submitKyc()">
                         <h3>Business Information</h3>
-                        <label for="Profile Picture*">Business/Organisation Name</label>
-                        <input type="text">
-                        <label for="First Name*">Country of Business Residence</label>
-                        <input type="text">
-                        <label for="Last Name*">Business Address</label>
-                        <input type="text">
-                        <label for="BVN*">Type of Business</label>
-                        <input type="text">
-                        <label for="BVN*">Upload your ID Card, Passport or driving license</label>
-                        <input type="file">
-                        <label for="BVN*">Upload your CAC certificate </label>
-                        <input type="file">
+                        <label for="Business Name">Business/Organisation Name *</label>
+                        <input type="text" v-model="business_info.business_name">
+                        <label for="Country">Country where business is situated</label>
+                        <select @change="choose($event)" class="form-select"   aria-label="Default select example" v-model="business_info.country">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in countries" :key="index">{{item.name}}</option>
+                            
+                        </select>
+                        <label for="State">State where business is situated</label>
+                        <select @change="select($event)" class="form-select"   aria-label="Default select example" v-model="business_info.state">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in states" :key="index">{{item.name}}</option>
+                            
+                        </select>
+                        <label for="City">City where business is situated</label>
+                        <select @change="mention($event)" class="form-select"   aria-label="Default select example" v-model="business_info.city">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in cities" :key="index">{{item.name}}</option>
+                            
+                        </select>
+                        <label for="MC type">MC type</label>
+                        <select class="form-select" aria-label="Default select example" v-model="business_info.mc_type">
+                            <option selected disabled>Choose One</option>
+                            <option value="individual">Individual</option>
+                            <option value="sole_proprietor">Sole Proprietor</option>
+                            <option value="limited_liability">Limited Liability</option>
+                        </select>
+                        <label for="BVN">BVN*</label>
+                        <input type="text" v-model="business_info.bvn">
+                        <label for="Address*">Business Address*</label>
+                        <input type="text" v-model="business_info.address">
+                        <label for="Phone Number">Phone Number</label>
+                        <input type="text" v-model="business_info.phone_number">
+                        <label for="Email">Email</label>
+                        <input type="text" v-model="business_info.email">
+                        <label for="logo"> Add a Logo </label>
+                        <input type="file" @change="upload()">
+                        <label for="documents">Add Business documents </label>
+                        <input type="file" multiple @change="update()">
                         <div>
                             <button type="submit">Submit</button>
                         </div>
@@ -166,12 +196,107 @@
 </style>
 
 <script>
+import axios from "axios";
 import Sidebar from "@/components/Merchant/SideBar.vue";
 import Navbar from "@/components/Merchant/Navbar.vue";
 export default {
     components: {
         Sidebar,
         Navbar
+    },
+    data(){
+        return{
+            business_info:{
+                country_id:'',
+                state_id:'',
+                city_id:''
+            },
+            countries:{},
+            
+            states:{},
+           
+            cities:{},
+            
+        }
+        
+
+    },
+    mounted(){
+        this.getCountries(),
+        this.getStates(),
+        this.getCities()
+    },
+    methods:{
+        getCountries() {
+      axios.get( "https://test-api.citisquare.africa/api/countries")
+        .then((response) => {
+          
+          this.countries = response.data;
+          console.log(this.countries);
+          
+        });
+    },
+     getStates() {
+      axios.get(  `https://test-api.citisquare.africa/api/countries/${this.business_info.country_id}/states`)
+        .then((response) => {
+          
+          this.states = response.data;
+          console.log(this.countries);
+          
+        });
+    },
+    getCities() {
+      axios.get(  `https://test-api.citisquare.africa/api/states/${this.business_info.state_id}/cities`)
+        .then((response) => {
+          
+          this.cities = response.data;
+          console.log(this.cities);
+          
+        });
+    },
+    async choose(event) {
+      let value = event.target.value;
+      this.business_info.country_id = value;
+      console.log(this.business_info.country_id);
+      this.getStates()
+      
+    },
+    async select(event) {
+      let value = event.target.value;
+      this.business_info.state_id = value;
+      console.log(this.business_info.state_id);
+      this.getCities()
+      
+    },
+    async mention(event) {
+      let value = event.target.value;
+      this.business_info.city_id = value;
+      console.log(this.business_info.city_id);
+      
+      
+    },
+    update() {
+      var input = event.target;
+      this.business_info.documents = input.files;
+      console.log(this.business_info.documents);
+    },
+    upload() {
+      var input = event.target;
+      this.business_info.logo = input.files[0];
+      console.log(this.business_info.logo);
+    },
+    async submitKyc() {
+        try {
+            const response = await axios.post(
+            'https://test-api.citisquare.africa/api/merchant/kyc-submission/', this.business_info 
+            );
+            console.log(response.data);
+            this.$router.push('/merchantdashboard/kycsuccess')
+        } catch (error) {
+            console.error(error);
+            
+        }
+    },
     }
 }
 </script>

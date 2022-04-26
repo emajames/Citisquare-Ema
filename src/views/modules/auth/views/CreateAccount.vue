@@ -198,7 +198,7 @@
         <p class="text-danger" v-if="errors.re_password">
           {{ errors.re_password[0] }}
         </p>
-        <div class="inputContainer mt-4">
+        <!-- <div class="inputContainer mt-4">
           <FontAwesomeIcon :icon="['fas', 'phone']" class="icon" />
           <input
             class="Field"
@@ -207,7 +207,7 @@
             v-model="signupDetails.phone_number"
             requied
           />
-        </div>
+        </div> -->
         <!-- <div class="inputContainer mt-4">
                <FontAwesomeIcon :icon="['fas', 'phone']" class="icon"/>
                <input class="Field" type="text" placeholder="Select merchant category"/>

@@ -9,59 +9,71 @@
             <div class="dash3">
                 <div class="dash4">
                     <div class="dash41">
-                        <img src="@/assets/tick.svg" alt=""><p id="profile">Product Detail</p>
+                        <img src="@/assets/tick.svg" alt=""><p id="profile">Product Details</p>
                     </div>
-                    <div class="dash41">
+                    <!-- <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p>Upload Documents</p>
                     </div>
                     <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p>Review and Submit</p>
-                    </div>
+                    </div> -->
                     
                 </div>
                 <div class="dash5">
-                    <form method="post">
+                    <form method="post" @submit.prevent="submitProductDetails() ">
                         <h3>Product Details</h3>
-                        <label for="Profile Picture*">Product Name</label>
-                        <input type="text">
-                        <label for="First Name*">Property Description</label>
-                        <input type="text" style="height:5rem">
-                        <label for="Last Name*">Price (&#8358;)</label>
-                        <input type="text">
-                        <label for="BVN*">Category</label>
-                        <input type="text">
-                        <label for="BVN*">Subcategory</label>
-                        <input type="file">
-                        <label for="BVN*">Select the various payment plans that apply to this product </label>
-                        <div class="check">
-                            <span class="checkbox d-flex align-items-center mt-4">
-                            <input type="checkbox" id="cb1" />
-                            <label for="cb1" class="pr-1 check_text">
-                                Outright</label
-                            >
-                            </span>
-                            <span class="checkbox d-flex align-items-center mt-4">
-                            <input type="checkbox" id="cb1" />
-                            <label for="cb1" class="pr-1 check_text">
-                                Installments</label
-                            >
-                            </span>
+                        <label for="Name">Name</label>
+                        <input type="text" v-model="productDetails.name">
+                        <label for="Description">Description</label>
+                        <input type="text" v-model="productDetails.description" style="height:5rem">
+                        <label for="Price*">Price (&#8358;)</label>
+                        <input type="number" v-model="productDetails.price" min="1">
+                        <label for="Minimum Investment">Minimum Investment</label>
+                        <input type="number" v-model="productDetails.minimum_investment" min="1">
+                        <label for="In Development">In Development</label>
+                        <select class="form-select" aria-label="Default select example" v-model="productDetails.in_development">
+                            <option selected disabled>Choose One</option>
+                            <option value="1">True</option>
+                            <option value="2">False</option>
                             
+                        </select>
+                        <label for="Address">Address</label>
+                        <input type="text" v-model="productDetails.address">
+                        <label for="Investment Type">Investment Type</label>
+                        <select class="form-select" aria-label="Default select example" v-model="productDetails.investment_type">
+                            <option selected disabled>Choose One</option>
+                            <option value="individual">Individual</option>
+                            <option value="groups">Groups</option>
+                            <option value="both">Both</option>
                             
-                            <span class="checkbox d-flex align-items-center mt-4">
-                            <input type="checkbox" id="cb1" />
-                            <label for="cb1" class="pr-1 check_text">
-                                Loans</label
-                            >
-                            </span>
-                             <span class="checkbox d-flex align-items-center mt-4">
-                            <input type="checkbox" id="cb1" />
-                            <label for="cb1" class="pr-1 check_text">
-                                Buy Now, Pay Later</label
-                            >
-                            </span>
+                        </select>
+                        <label for="Country">Country where business is situated</label>
+                        <select @change="choose($event)" class="form-select"   aria-label="Default select example" v-model="productDetails.country">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in countries" :key="index">{{item.name}}</option>
                             
-                        </div>
+                        </select>
+                        <label for="State">State where business is situated</label>
+                        <select @change="select($event)" class="form-select"   aria-label="Default select example" v-model="productDetails.state">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in states" :key="index">{{item.name}}</option>
+                            
+                        </select>
+                        <label for="City">City where business is situated</label>
+                        <select @change="mention($event)" class="form-select"   aria-label="Default select example" v-model="productDetails.city">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in cities" :key="index">{{item.name}}</option>
+                            
+                        </select>
+                        <label for="Videos"> Add Videos </label>
+                        <input type="file" multiple @change="upload()">
+                        <label for="Images">Add Images </label>
+                        <input type="file" multiple @change="update()">
+                        
+                        
 
 
                         <div>
@@ -223,6 +235,97 @@ export default {
     components: {
         Sidebar,
         Navbar
+    },
+    data(){
+        return{
+            productDetails:{
+                country_id:'',
+                state_id:'',
+                city_id:''
+            },
+            countries:{},
+            
+            states:{},
+           
+            cities:{},
+        }
+    },
+    mounted(){
+        this.getCountries(),
+        this.getStates(),
+        this.getCities()
+    },
+    methods:{
+        getCountries() {
+      axios.get( "https://test-api.citisquare.africa/api/countries")
+        .then((response) => {
+          
+          this.countries = response.data;
+          console.log(this.countries);
+          
+        });
+    },
+        getStates() {
+      axios.get(  `https://test-api.citisquare.africa/api/countries/${this.productDetails.country_id}/states`)
+        .then((response) => {
+          
+          this.states = response.data;
+          console.log(this.countries);
+          
+        });
+    },
+        getCities() {
+      axios.get(  `https://test-api.citisquare.africa/api/states/${this.productDetails.state_id}/cities`)
+        .then((response) => {
+          
+          this.cities = response.data;
+          console.log(this.cities);
+          
+        });
+    },
+        async choose(event) {
+      let value = event.target.value;
+      this.productDetails.country_id = value;
+      console.log(this.productDetails.country_id);
+      this.getStates()
+      
+    },
+    async select(event) {
+      let value = event.target.value;
+      this.productDetails.state_id = value;
+      console.log(this.productDetails.state_id);
+      this.getCities()
+      
+    },
+    async mention(event) {
+      let value = event.target.value;
+      this.productDetails.city_id = value;
+      console.log(this.productDetails.city_id);
+      
+      
+    },
+     update() {
+      var input = event.target;
+      this.productDetails.images = input.files;
+      console.log(this.productDetails.images);
+    },
+    upload() {
+      var input = event.target;
+      this.productDetails.videos = input.files;
+      console.log(this.productDetails.videos);
+    },
+    async submitProductDetails() {
+        try {
+            const response = await axios.post(
+            'https://test-api.citisquare.africa/api/merchant/properties/', this.productDetails 
+            );
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+            
+        }
+    },
+
     }
 }
 </script>
