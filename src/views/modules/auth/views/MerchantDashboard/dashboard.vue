@@ -6,7 +6,7 @@
     <Sidebar/>
     <div class="dash1">
         <div class="nav_cont d-flex">
-            <h2>Dashbord</h2>
+            <h2>Dashboard</h2>
             <div class="btn_items">
                 <button class="inactive">inactive</button>
                  <FontAwesomeIcon :icon="['fas', 'bell']" class="icon" />

@@ -61,9 +61,9 @@
                         <label for="Email">Email</label>
                         <input type="text" v-model="business_info.email">
                         <label for="logo"> Add a Logo </label>
-                        <input type="file" @change="upload()">
+                        <input type="file" @change="upload()" multiple>
                         <label for="documents">Add Business documents </label>
-                        <input type="file" multiple @change="update()">
+                        <input type="file" multiple @change="update()" >
                         <div>
                             <button type="submit">Submit</button>
                         </div>
@@ -72,6 +72,7 @@
             </div>
         </div>
     </div>
+
 </div>
     
 </template>
@@ -196,6 +197,7 @@
 </style>
 
 <script>
+import { mapState } from "vuex";
 import axios from "axios";
 import Sidebar from "@/components/Merchant/SideBar.vue";
 import Navbar from "@/components/Merchant/Navbar.vue";
@@ -209,7 +211,8 @@ export default {
             business_info:{
                 country_id:'',
                 state_id:'',
-                city_id:''
+                city_id:'',
+                
             },
             countries:{},
             
@@ -220,6 +223,10 @@ export default {
         }
         
 
+    },
+
+    computed:{
+            ...mapState('auth',['auth_token'])
     },
     mounted(){
         this.getCountries(),
@@ -276,19 +283,36 @@ export default {
       
     },
     update() {
-      var input = event.target;
+    //   var input = event.target;
+    //   this.business_info.documents.push(input.files)
+    //   console.log(this.business_info.documents);
+    this.business_info.documents = []
+    var input = event.target;
       this.business_info.documents = input.files;
-      console.log(this.business_info.documents);
+      console.log(this.business_info.documents)
     },
     upload() {
-      var input = event.target;
-      this.business_info.logo = input.files[0];
-      console.log(this.business_info.logo);
+        this.business_info.logo = []
+     var input = event.target;
+      this.business_info.logo = input.files;
+      console.log(this.business_info.logo)
+    //   this.business_info.logo.push(input.files)
+    //   console.log(this.business_info.logo)
+    //   for (let index = 0; index < input.length; index++) {
+         
+    //     console.log(input)
+          
+    //   }
+    
     },
     async submitKyc() {
         try {
-            const response = await axios.post(
-            'https://test-api.citisquare.africa/api/merchant/kyc-submission/', this.business_info 
+            const response = await axios.put(
+            'https://test-api.citisquare.africa/api/merchant/kyc-submission/', this.business_info, {
+                headers : {
+                    authorization: `token ${this.auth_token}`
+                }
+            }
             );
             console.log(response.data);
             this.$router.push('/merchantdashboard/kycsuccess')

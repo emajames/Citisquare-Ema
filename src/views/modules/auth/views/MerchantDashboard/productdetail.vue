@@ -229,6 +229,7 @@
 </style>
 
 <script>
+import axios from "axios";
 import Sidebar from "@/components/Merchant/SideBar.vue";
 import Navbar from "@/components/Merchant/Navbar.vue";
 export default {
