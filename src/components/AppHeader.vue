@@ -37,7 +37,7 @@
         </ul>
         <a class="nav-link" href="/login" style="color: #50ac95">Login</a>
 
-        <button class="btn btn__soon">Get Started</button>
+        <a href="/sign-up"><button class="btn btn__soon">Get Started</button></a>
       </div>
     </div>
   </nav>

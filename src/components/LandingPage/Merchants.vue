@@ -15,7 +15,7 @@
           <li>Spa Service Providers</li>
           <li>Financial Services</li>
         </ul>
-        <button>Get Started</button>
+        <a href="/signup-merchant"><button>Get Started</button></a>
       </div>
       <div class="merchant2 d-none d-md-inline">
         <img src="@/assets/merchant.svg" alt="merchant" />
