@@ -6,49 +6,47 @@
             <p >Financial Services </p>
         </div>
         <div class="one2">
-            <h3>Introduction</h3>
-            <div class="one21">
-                <img src="@/assets/dashicons/timer-start.svg" alt=""><p> Get Started</p>
-            </div>
-            <div class="one21">
-                <img src="@/assets/dashicons/shield-tick.svg" alt=""><p> Complete KYC</p>
-            </div>
-            
-        </div>
-        <div class="one2">
             <h3>Dashboard</h3>
             <div class="one21">
-                <img src="@/assets/dashicons/home-2.svg" alt=""><p> Home</p>
+                <a href="/merchantdashboard/dashboard"><img src="@/assets/dashicons/home-2.svg" alt=""><p> Home</p></a>
+            </div>
+             <div class="one21">
+                 <a href="/merchantdashboard/kycbusiness"><img src="@/assets/dashicons/shield-tick.svg" alt=""><p> Complete KYC</p></a>
             </div>
             
         </div>
         <div class="one2">
             <h3>Products</h3>
             <div class="one21">
-                <img src="@/assets/dashicons/receipt-add.svg" alt=""><p> Add Products</p>
+                <a href="/merchantdashboard/productdetail"><img src="@/assets/dashicons/receipt-add.svg" alt=""><p> Add Products</p></a>
+                
             </div>
             <div class="one21">
-                <img src="@/assets/dashicons/receipt-edit.svg" alt=""><p> Manage Products</p>
+                <a href="#"><img src="@/assets/dashicons/receipt-edit.svg" alt=""><p> Manage Products</p></a>
             </div>
             
         </div>
         <div class="one2">
             <h3>Wallets</h3>
             <div class="one21">
-                <img src="@/assets/dashicons/wallet-add.svg" alt=""><p> Fund Wallet</p>
+                <a href="#"><img src="@/assets/dashicons/wallet-add.svg" alt=""><p> Fund Wallet</p></a>
+                
             </div>
             <div class="one21">
-                <img src="@/assets/dashicons/arrow-3.svg" alt=""><p> Transactions</p>
+                <a href="#"><img src="@/assets/dashicons/arrow-3.svg" alt=""><p> Transactions</p></a>
+                
             </div>
             <div class="one21">
-                <img src="@/assets/dashicons/wallet-minus.svg" alt=""><p> Withdrawal</p>
+                <a href="#"><img src="@/assets/dashicons/wallet-minus.svg" alt=""><p> Withdrawal</p></a>
+                
             </div>
             
         </div>
         <div class="one2">
             <h3>Settings</h3>
             <div class="one21">
-                <img src="@/assets/dashicons/user-edit.svg" alt=""><p> Profile Settings</p>
+                <a href=""><img src="@/assets/dashicons/user-edit.svg" alt=""><p> Profile Settings</p></a>
+                
             </div>
             
         </div>
@@ -116,8 +114,8 @@ export default {
 }
 
 .one1{
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
     text-align: left;
     padding: 1rem 1rem;
     background: #044161;
@@ -139,19 +137,20 @@ export default {
 }
 .one2 h3{
     margin-top: 1rem;
-    margin-left: 1rem;
+    margin-left: 2rem;
     color: #798998;
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
 }
-.one21{
-    padding-left:1rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
+.one21 a{
+    padding-left:2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    text-decoration: none;
+    grid-template-columns: 1fr 6fr;
 }
 .one21:hover{
     background: #50AC95;

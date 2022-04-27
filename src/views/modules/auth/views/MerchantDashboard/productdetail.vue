@@ -9,7 +9,7 @@
             <div class="dash3">
                 <div class="dash4">
                     <div class="dash41">
-                        <img src="@/assets/tick.svg" alt=""><p id="profile">Product Details</p>
+                        <img src="@/assets/tick.svg" alt=""><p id="profile">Add Product</p>
                     </div>
                     <!-- <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p>Upload Documents</p>
@@ -17,67 +17,57 @@
                     <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p>Review and Submit</p>
                     </div> -->
-                    
                 </div>
                 <div class="dash5">
                     <form method="post" @submit.prevent="submitProductDetails() ">
                         <h3>Product Details</h3>
                         <label for="Name">Name</label>
-                        <input type="text" v-model="productDetails.name">
+                        <input type="text" class="form-control" v-model="productDetails.name">
                         <label for="Description">Description</label>
-                        <input type="text" v-model="productDetails.description" style="height:5rem">
-                        <label for="Price*">Price (&#8358;)</label>
-                        <input type="number" v-model="productDetails.price" min="1">
+                        <input type="text" class="form-control" v-model="productDetails.description" style="height:5rem">
+                        <label for="Price*">Price</label>
+                        <input type="number" class="form-control" v-model="productDetails.price" min="1">
                         <label for="Minimum Investment">Minimum Investment</label>
-                        <input type="number" v-model="productDetails.minimum_investment" min="1">
+                        <input type="number" class="form-control" v-model="productDetails.minimum_investment" min="1">
                         <label for="In Development">In Development</label>
-                        <select class="form-select" aria-label="Default select example" v-model="productDetails.in_development">
+                        <select  class="form-select form-control" aria-label="Default select example" v-model="productDetails.in_development">
                             <option selected disabled>Choose One</option>
                             <option value="1">True</option>
                             <option value="2">False</option>
-                            
                         </select>
                         <label for="Address">Address</label>
-                        <input type="text" v-model="productDetails.address">
+                        <input type="text" class="form-control" v-model="productDetails.address">
                         <label for="Investment Type">Investment Type</label>
-                        <select class="form-select" aria-label="Default select example" v-model="productDetails.investment_type">
+                        <select class="form-select form-control" aria-label="Default select example" v-model="productDetails.investment_type">
                             <option selected disabled>Choose One</option>
                             <option value="individual">Individual</option>
                             <option value="groups">Groups</option>
                             <option value="both">Both</option>
-                            
                         </select>
-                        <label for="Country">Country where business is situated</label>
-                        <select @change="choose($event)" class="form-select"   aria-label="Default select example" v-model="productDetails.country">
+                        <label for="Country">Country</label>
+                        <select @change="choose($event)" class="form-select form-control"   aria-label="Default select example" v-model="productDetails.country">
                             <option selected disabled>Choose One</option>
                             <option :value=item.id  class="form-select"
                          v-for="(item, index) in countries" :key="index">{{item.name}}</option>
-                            
                         </select>
-                        <label for="State">State where business is situated</label>
-                        <select @change="select($event)" class="form-select"   aria-label="Default select example" v-model="productDetails.state">
+                        <label for="State">State</label>
+                        <select @change="select($event)" class="form- form-control"   aria-label="Default select example" v-model="productDetails.state">
                             <option selected disabled>Choose One</option>
                             <option :value=item.id  class="form-select"
                          v-for="(item, index) in states" :key="index">{{item.name}}</option>
-                            
                         </select>
-                        <label for="City">City where business is situated</label>
-                        <select @change="mention($event)" class="form-select"   aria-label="Default select example" v-model="productDetails.city">
+                        <label for="City">City</label>
+                        <select @change="mention($event)" class="form-select form-control"   aria-label="Default select example" v-model="productDetails.city">
                             <option selected disabled>Choose One</option>
                             <option :value=item.id  class="form-select"
                          v-for="(item, index) in cities" :key="index">{{item.name}}</option>
-                            
                         </select>
                         <label for="Videos"> Add Videos </label>
-                        <input type="file" multiple @change="upload()">
+                        <input type="file" class="form-control" multiple @change="upload()">
                         <label for="Images">Add Images </label>
-                        <input type="file" multiple @change="update()">
-                        
-                        
-
-
+                        <input type="file" class="form-control" multiple @change="update()">
                         <div>
-                            <button type="submit">Submit</button>
+                            <button type="submit">Add Product</button>
                         </div>
                     </form>
                 </div>
@@ -85,9 +75,7 @@
         </div>
     </div>
 </div>
-    
 </template>
-
 <style scoped>
     *{
     box-sizing: border-box;
@@ -104,16 +92,15 @@
     }
     .dash2{
         background: #FAFBFA;
-        height: 100vh;
+        height: auto;
         width: 100%;
     }
     .dash3{
-        padding-top: 9rem;
+        padding-top: 1rem;
         margin-left: 3rem;
         margin-right: 3rem;
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
-
     }
     .dash41{
         display: flex;
@@ -132,9 +119,8 @@
     .dash5{
         background: white;
         padding: 2rem 2rem;
-
     }
-    .dash5 input{
+    .dash5 input,select{
         display: block;
         width: 100%;
         border: 1px solid #C4C4C4;
@@ -157,7 +143,6 @@
         color: white;
     }
     #profile{
-        
         color: #000000;
     }
     input[type="checkbox"] {
@@ -175,10 +160,6 @@
         grid-template-columns: 1fr 1.5fr 1fr 2fr ;
         column-gap: 1rem;
     }
-    
-    
-    
-
     @media(max-width:768px){
         .dash1{
         margin-left: 0%;
@@ -186,13 +167,11 @@
     }
         .dash2{
         background: #FAFBFA;
-        height: 100vh;
+        height: auto;
         width: 100%;
     }
-    
         .show{
         display: block;
-
     }
         .dash3{
         padding-top: 9rem;
@@ -200,7 +179,6 @@
         margin-right: 10px;
         display: grid;
         grid-template-columns: 1fr;
-
     }
     .check{
         display: grid;
@@ -208,8 +186,6 @@
         column-gap: 1rem;
     }
     }
-
-
     @media(min-width:577px) and (max-width:768px){
         .dash1{
         margin-left: 0%;
@@ -217,17 +193,14 @@
     }
         .dash2{
         background: #FAFBFA;
-        height: 100vh;
+        height: auto;
         width: 100%;
     }
-        
         .show{
         display: block;
     }
     }
-
 </style>
-
 <script>
 import axios from "axios";
 import Sidebar from "@/components/Merchant/SideBar.vue";
@@ -245,9 +218,7 @@ export default {
                 city_id:''
             },
             countries:{},
-            
             states:{},
-           
             cities:{},
         }
     },
@@ -260,28 +231,22 @@ export default {
         getCountries() {
       axios.get( "https://test-api.citisquare.africa/api/countries")
         .then((response) => {
-          
           this.countries = response.data;
           console.log(this.countries);
-          
         });
     },
         getStates() {
       axios.get(  `https://test-api.citisquare.africa/api/countries/${this.productDetails.country_id}/states`)
         .then((response) => {
-          
           this.states = response.data;
           console.log(this.countries);
-          
         });
     },
         getCities() {
       axios.get(  `https://test-api.citisquare.africa/api/states/${this.productDetails.state_id}/cities`)
         .then((response) => {
-          
           this.cities = response.data;
           console.log(this.cities);
-          
         });
     },
         async choose(event) {
@@ -289,21 +254,17 @@ export default {
       this.productDetails.country_id = value;
       console.log(this.productDetails.country_id);
       this.getStates()
-      
     },
     async select(event) {
       let value = event.target.value;
       this.productDetails.state_id = value;
       console.log(this.productDetails.state_id);
       this.getCities()
-      
     },
     async mention(event) {
       let value = event.target.value;
       this.productDetails.city_id = value;
       console.log(this.productDetails.city_id);
-      
-      
     },
      update() {
       var input = event.target;
@@ -318,15 +279,13 @@ export default {
     async submitProductDetails() {
         try {
             const response = await axios.post(
-            'https://test-api.citisquare.africa/api/merchant/properties/', this.productDetails 
+            'https://test-api.citisquare.africa/api/merchant/properties/', this.productDetails
             );
             console.log(response.data);
         } catch (error) {
             console.error(error);
-            
         }
     },
-
     }
 }
 </script>

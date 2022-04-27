@@ -45,12 +45,12 @@
         </p>
       </div>
 
-      <form method="post">
+      <form method="post" @submit.prevent="submitInfo()">
         <div class="inputContainer">
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
-          <input class="Field" type="text" placeholder="Your Email" />
+          <input class="Field" required type="text" placeholder="Your Email" />
         </div>
-        <button>Send Instructions</button>
+        <button type="submit">Reset Password</button>
       </form>
     </section>
 
@@ -65,6 +65,33 @@
     </footer>
   </section>
 </template>
+
+
+<script>
+export default {
+  data(){
+    return{
+      info:{
+        email:''
+      }
+    }
+  },
+  methods:{
+    async submitInfo() {
+        try {
+            const response = await axios.post(
+            'https://test-api.citisquare.africa/api/auth/users/reset_password/', this.info, 
+            );
+            console.log(response.data);
+           
+        } catch (error) {
+            console.error(error);
+            
+        }
+    },
+  }
+}
+</script>
 
 <style scoped>
 .forgot {
@@ -143,7 +170,7 @@ form {
   margin-right: auto;
   background: white;
   margin-top: 3rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   padding: 1rem 0;
 }
 form button {
@@ -154,7 +181,7 @@ form button {
   border: none;
   margin-top: 1.5rem;
   color: white;
-  margin-bottom: 12rem;
+  margin-bottom: 5rem;
 }
 form input {
   background: #ffffff;
