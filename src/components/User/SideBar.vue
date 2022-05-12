@@ -32,7 +32,7 @@
                 
             </div>
             <div class="one21">
-                <a href="#"><img src="@/assets/dashicons/fin.png" alt=""><p>Finacial Services</p></a>
+                <a href="/userdashboard/financialservices"><img src="@/assets/dashicons/fin.png" alt=""><p>Financial Services</p></a>
                 
             </div>
             <div class="one21">

@@ -6,6 +6,8 @@ const SearchResults = () => import("../views/SearchResults.vue");
 const Payment = () => import("../views/Payment.vue");
 const UserDashboard = () => import("../views/UserDashboard/dashboard.vue");
 const MerchantDashboard = () => import("../views/MerchantDashboard/dashboard.vue");
+const FinancialServices = () => import("../views/UserDashboard/FinancialServices.vue");
+const FinancialServicesSearch = () => import("../views/UserDashboard/Search.vue");
 const KycProfile = () => import("../views/MerchantDashboard/kycprofile.vue");
 const KycContact = () => import("../views/MerchantDashboard/kyccontact.vue");
 const KycBusiness = () => import("../views/MerchantDashboard/kycbusiness.vue");
@@ -130,6 +132,18 @@ export default [
     path: "/merchantdashboard/kycprofile",
     name: "KycProfile",
     component: KycProfile,
+    meta: { layout: "default" },
+  },
+  {
+    path: "/userdashboard/financialservices",
+    name: "FinancialServices",
+    component: FinancialServices,
+    meta: { layout: "default" },
+  },
+  {
+    path: "/userdashboard/search",
+    name: "FinancialServicesSearch",
+    component: FinancialServicesSearch,
     meta: { layout: "default" },
   },
   {
