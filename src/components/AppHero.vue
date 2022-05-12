@@ -33,7 +33,7 @@ export default defineComponent({
 .hero .carousel__item {
   min-height: 200px;
   width: 100%;
-  height: 500px;
+  height: 400px !important;
   background-image: url("../assets/images/hero_one.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -1,7 +1,7 @@
 <template>
-  <div class="container my-5">
+  <div class="container my-2">
     <ul
-      class="nav nav-pills justify-content-md-center mb-3"
+      class="nav nav-pills justify-content-md-center "
       id="pills-tab"
       role="tablist"
     >

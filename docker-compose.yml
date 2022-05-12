@@ -1,0 +1,10 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+    image: citisquare_frontend
+    ports:
+      - "3000:80"
+    # command: /start
+

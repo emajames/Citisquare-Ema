@@ -8,40 +8,77 @@
         <div class="dash2">
             <div class="dash3">
                 <div class="dash4">
-                    <div class="dash41">
+                    <!-- <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p id="profile">Profile</p>
                     </div>
                     <div class="dash41">
-                        <img src="@/assets/tick-circle.svg" alt=""><p>Contact</p>
-                    </div>
+                        <img src="@/assets/tick.svg" alt=""><p>Contact</p>
+                    </div> -->
                     <div class="dash41">
-                        <img src="@/assets/tick-circle.svg" alt=""><p>Business Info</p>
+                        <img src="@/assets/tick.svg" alt=""><p>Business Info</p>
                     </div>
-                    <div class="dash41">
-                        <img src="@/assets/tick-circle.svg" alt=""><p>Review and Submit</p>
-                    </div>
+                    
                 </div>
                 <div class="dash5">
-                    <form method="post">
-                        <h3>Profile</h3>
-                        <label for="Profile Picture*">Profile Picture</label>
-                        <input type="file">
-                        <label for="First Name*">First Name</label>
-                        <input type="text">
-                        <label for="Last Name*">Last Name</label>
-                        <input type="text">
-                        <label for="BVN*">BVN</label>
-                        <input type="text">
+                    <form method="post" @submit.prevent="submitKyc()">
+                        <h3>Business Information</h3>
+                        <label for="Business Name">Business/Organisation Name *</label>
+                        <input type="text" required  v-model="business_info.business_name">
+                        <label for="Country">Country where business is situated</label>
+                        <select @change="choose($event)" class="form-select" required aria-label="Default select example" v-model="business_info.country_id">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in countries" :key="index">{{item.name}}</option>
+                            
+                        </select>
+                        <label for="State">State where business is situated</label>
+                        <select @change="select($event)" required  class="form-select"   aria-label="Default select example" v-model="business_info.state_id">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in states" :key="index">{{item.name}}</option>
+                            
+                        </select>
+                        <label for="City">City where business is situated</label>
+                        <select @change="mention($event)" required  class="form-select"   aria-label="Default select example" v-model="business_info.city_id">
+                            <option selected disabled>Choose One</option>
+                            <option :value=item.id  class="form-select"
+                         v-for="(item, index) in cities" :key="index">{{item.name}}</option>
+                            
+                        </select>
+                        <label for="MC type">MC type</label>
+                        <select class="form-select" required  @change="push($event)" aria-label="Default select example" v-model="business_info.mc_type">
+                            <option selected disabled>Choose One</option>
+                            <option value="individual">Individual</option>
+                            <option value="sole_proprietor">Sole Proprietor</option>
+                            <option value="limited_liability">Limited Liability</option>
+                        </select>
+                        <label for="BVN">BVN*</label>
+                        <input type="text" required  v-model="business_info.bvn">
+                        <label for="RC Number">RC Number</label>
+                        <input type="text" required  v-model="business_info.rc_number">
+                        <label for="Address*">Business Address*</label>
+                        <input type="text" required  v-model="business_info.address">
+                        <label for="Phone Number">Phone Number</label>
+                        <input type="text" required  v-model="business_info.phone_number">
+                        <label for="Email">Email</label>
+                        <input type="text" required  v-model="business_info.email">
+                        <label for="logo"> Add a Logo </label>
+                        <input type="file" required  @change="uploadLogo()">
+                        <label for="documents">Add Business documents </label>
+                        <input type="file" required multiple @change="uploadDocuments()" >
                         <div>
-                            <button type="submit">Proceed</button>
+                            <button type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+    
 </template>
+
 <style scoped>
     *{
     box-sizing: border-box;
@@ -58,15 +95,16 @@
     }
     .dash2{
         background: #FAFBFA;
-        height: 100vh;
+        height: auto;
         width: 100%;
     }
     .dash3{
-        padding-top: 9rem;
+        padding-top: 2rem;
         margin-left: 3rem;
         margin-right: 3rem;
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
+
     }
     .dash41{
         display: flex;
@@ -85,8 +123,9 @@
     .dash5{
         background: white;
         padding: 2rem 2rem;
+
     }
-    .dash5 input{
+    .dash5 input, select{
         display: block;
         width: 100%;
         border: 1px solid #C4C4C4;
@@ -109,8 +148,12 @@
         color: white;
     }
     #profile{
+        
         color: #000000;
     }
+    
+    
+
     @media(max-width:768px){
         .dash1{
         margin-left: 0%;
@@ -118,11 +161,13 @@
     }
         .dash2{
         background: #FAFBFA;
-        height: 100vh;
+        height: auto;
         width: 100%;
     }
+    
         .show{
         display: block;
+
     }
         .dash3{
         padding-top: 9rem;
@@ -130,8 +175,11 @@
         margin-right: 10px;
         display: grid;
         grid-template-columns: 1fr;
+
     }
     }
+
+
     @media(min-width:577px) and (max-width:768px){
         .dash1{
         margin-left: 0%;
@@ -139,21 +187,166 @@
     }
         .dash2{
         background: #FAFBFA;
-        height: 100vh;
+        height: auto;
         width: 100%;
     }
+        
         .show{
         display: block;
     }
     }
+
 </style>
+
 <script>
+import { mapState } from "vuex";
+import axios from "axios";
 import Sidebar from "@/components/Merchant/SideBar.vue";
 import Navbar from "@/components/Merchant/Navbar.vue";
 export default {
     components: {
         Sidebar,
         Navbar
+    },
+    data(){
+        return{
+            business_info:{
+                country_id:'',
+                state_id:'',
+                city_id:'',
+                
+            },
+            countries:{},
+            
+            states:{},
+           
+            cities:{},
+            
+        }
+        
+
+    },
+
+    computed:{
+            ...mapState('auth',['auth_token'])
+    },
+    mounted(){
+        this.getCountries(),
+        this.getStates(),
+        this.getCities()
+    },
+    methods:{
+       
+        getCountries() {
+      axios.get( "https://test-api.citisquare.africa/api/countries")
+        .then((response) => {
+          
+          this.countries = response.data;
+          console.log(this.countries);
+          
+        });
+    },
+     getStates() {
+      axios.get(  `https://test-api.citisquare.africa/api/countries/${this.business_info.country_id}/states`)
+        .then((response) => {
+          
+          this.states = response.data;
+          console.log(this.countries);
+          
+        });
+    },
+    getCities() {
+      axios.get(  `https://test-api.citisquare.africa/api/states/${this.business_info.state_id}/cities`)
+        .then((response) => {
+          
+          this.cities = response.data;
+          console.log(this.cities);
+          
+        });
+    },
+    async choose(event) {
+      let value = event.target.value;
+      this.business_info.country_id = value;
+      console.log(this.business_info.country_id);
+      this.getStates()
+      
+    },
+    async select(event) {
+      let value = event.target.value;
+      this.business_info.state_id = value;
+      console.log(this.business_info.state_id);
+      this.getCities()
+      
+    },
+    async mention(event) {
+      let value = event.target.value;
+      this.business_info.city_id = value;
+      console.log(this.business_info.city_id);
+      
+      
+    },
+    async push(event) {
+      let value = event.target.value;
+      this.business_info.mc_type = value;
+      console.log(this.business_info.mc_type);
+      
+      
+    },
+   
+    uploadLogo() {
+      var input = event.target;
+      this.business_info.logo = input.files[0];
+      console.log(this.business_info.logo);
+    },
+    uploadDocuments() {
+      var input = event.target;
+      this.business_info.documents = input.files;
+      console.log(this.business_info.documents);
+    },
+    submitKyc() {
+      const formData = new FormData();
+      formData.append("business_name", this.business_info.business_name);
+      formData.append("country_id", this.business_info.country_id);
+      formData.append("state_id", this.business_info.state_id);
+      formData.append("city_id", this.business_info.city_id);
+      formData.append("mc_type", this.business_info.mc_type);
+      formData.append("bvn", this.business_info.bvn);
+      formData.append("address", this.business_info.address);
+      formData.append("phone_number", this.business_info.phone_number);
+      formData.append("email", this.business_info.email);
+      formData.append("logo", this.business_info.logo);
+      formData.append("rc_number", this.business_info.rc_number);
+      formData.append("uploads", this.business_info.documents);
+      formData.append("_method", "PUT");
+      axios.put(
+          'https://test-api.citisquare.africa/api/merchant/kyc-submission/',
+          formData, {
+              headers : {
+                    authorization: `token ${this.auth_token}`,
+                    
+                }
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          this.makeToast(
+          "KYC sent",
+         'Success',
+          "success"
+        );
+        this.business_info = {}
+        //   this.$router.push('/merchantdashboard/kycsuccess')
+        })
+        .catch((error) => {
+          console.log(error);
+          this.business_info = {}
+          this.makeToast(
+          (error),
+          "Please Try Again Later",
+          "warning"
+        );
+        });
+    },
     }
 }
 </script>

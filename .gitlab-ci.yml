@@ -1,0 +1,20 @@
+stages:
+  - deploy
+
+deploy:
+  image: alpine:latest
+  stage: deploy
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+   - ssh $SSH_USER@$SSH_HOST "cd Documents/citisquare-frontend-new && docker compose stop && git pull && docker compose up --build -d"
+
+  only:
+    - dev
+    

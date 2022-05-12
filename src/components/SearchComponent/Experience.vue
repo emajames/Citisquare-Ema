@@ -118,7 +118,7 @@ input:focus {
     width: 80%;
     margin: 0px auto;
     height: 80px;
-    top: 5rem;
+    top: 2rem;
     align-items: center;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   }

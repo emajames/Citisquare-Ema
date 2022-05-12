@@ -29,6 +29,18 @@ export default {
       console.log(res);
       return res;
     },
+    // Login request
+    async logout({ commit }) {
+      let res = await request().post(`api/auth/token/logout/`,{
+        authorization: `token ${this.auth_token}`,
+      }, {
+        "Content-Type": "application/json",
+        
+      });
+      commit("LOGOUT", res.data);
+      console.log(res);
+      return res;
+    },
 
     // Signup User
     async signUpUser({ commit }, data) {

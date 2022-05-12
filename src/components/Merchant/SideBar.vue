@@ -48,6 +48,10 @@
                 <a href=""><img src="@/assets/dashicons/user-edit.svg" alt=""><p> Profile Settings</p></a>
                 
             </div>
+            <div class="one21" @click.prevent="logOut()">
+                <a href=""><img src="@/assets/dashicons/user-edit.svg" alt=""><p> Logout</p></a>
+                
+            </div>
             
         </div>
         
@@ -78,16 +82,28 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-   
+   computed: {
+    ...mapState("auth", ["user"]),
+    ...mapState("auth", ["auth_token"]),
+  },
     methods:{
-        async logOut() {
-            await this.$auth.logout();
-            this.$message({
-                message: "You Logged out successfully!",
-                type: "success",
-            });this.$router.push("/login");
-        },
+        ...mapActions("auth", ["logout"]),
+         async logOut() {
+      try {
+        let res = await this.logout;
+        console.log(res);
+        this.makeToast(
+          "You've Logged Out",
+          `Till Next Time`,
+          "warning"
+        );
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+      }
+    },
     },
 };
 </script>

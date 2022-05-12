@@ -9,7 +9,7 @@
             <div class="dash3">
                 <div class="dash4">
                     <div class="dash41">
-                        <img src="@/assets/tick.svg" alt=""><p id="profile">Add Product</p>
+                        <img src="@/assets/tick.svg" alt=""><p id="profile">Update Profile</p>
                     </div>
                     <!-- <div class="dash41">
                         <img src="@/assets/tick.svg" alt=""><p>Upload Documents</p>
@@ -19,53 +19,31 @@
                     </div> -->
                 </div>
                 <div class="dash5">
-                    <form method="post" @submit.prevent="submitProductDetails() ">
-                        <h3>Product Details</h3>
-                        <label for="Name">Name</label>
-                        <input type="text" required class="form-control" v-model="productDetails.name">
-                        <label for="Description">Description</label>
-                        <textarea name="" id="" required cols="30" class="form-control" v-model="productDetails.description" style="height:5rem"></textarea>
-                        <label for="Price*">Price</label>
-                        <input type="number" required  class="form-control" v-model="productDetails.price" min="1">
-                        <label for="Minimum Investment">Minimum Investment</label>
-                        <input type="number" required  class="form-control" v-model="productDetails.minimum_investment" min="1">
-                        <label for="In Development">In Development</label>
-                        <select required  @change="think($event)" class="form-select form-control" aria-label="Default select example" v-model="productDetails.in_development">
-                            <option selected disabled>Choose One</option>
-                            <option value=true>True</option>
-                            <option value=false>False</option>
-                        </select>
-                        <label for="Address">Address</label>
-                        <input type="text" required  class="form-control" v-model="productDetails.address">
-                        <label for="Investment Type">Investment Type</label>
-                        <select required  class="form-select form-control" aria-label="Default select example" @change="pick($event)" v-model="productDetails.investment_type">
-                            <option selected disabled>Choose One</option>
-                            <option value="individual">Individual</option>
-                            <option value="groups">Groups</option>
-                            <option value="both">Both</option>
-                        </select>
+                    <form method="post" @submit.prevent="updateProfile() ">
+                        <h3>Profile</h3>
+                        <label for="Name">First Name</label>
+                        <input type="text" required class="form-control" v-model="profile.first_name">
+                        <label for="Description">Last Name</label>
+                        <input type="text" required class="form-control" v-model="profile.last_name">
                         <label for="Country">Country</label>
-                        <select required  @change="choose($event)" class="form-select form-control"   aria-label="Default select example" v-model="productDetails.country">
+                        <select required  @change="choose($event)" class="form-select form-control"   aria-label="Default select example">
                             <option selected disabled>Choose One</option>
                             <option :value=item.id  class="form-select"
                          v-for="(item, index) in countries" :key="index">{{item.name}}</option>
                         </select>
                         <label for="State">State</label>
-                        <select required  @change="select($event)" class="form- form-control"   aria-label="Default select example" v-model="productDetails.state">
+                        <select required  @change="select($event)" class="form- form-control"   aria-label="Default select example" >
                             <option selected disabled>Choose One</option>
                             <option :value=item.id  class="form-select"
                          v-for="(item, index) in states" :key="index">{{item.name}}</option>
                         </select>
                         <label for="City">City</label>
-                        <select required  @change="mention($event)" class="form-select form-control"   aria-label="Default select example" v-model="productDetails.city">
+                        <select required  @change="mention($event)" class="form-select form-control"   aria-label="Default select example">
                             <option selected disabled>Choose One</option>
                             <option :value=item.id  class="form-select"
                          v-for="(item, index) in cities" :key="index">{{item.name}}</option>
                         </select>
-                        <label for="Videos"> Add Videos </label>
-                        <input type="file" required  class="form-control" multiple @change="upload()">
-                        <label for="Images">Add Images </label>
-                        <input type="file" required  class="form-control" multiple  @change="update()">
+                        
                         <div>
                             <button type="submit">Add Product</button>
                         </div>
@@ -214,12 +192,10 @@ export default {
     },
     data(){
         return{
-            productDetails:{
+            profile:{
                 country_id:'',
                 state_id:'',
                 city_id:'',
-                videos:[],
-                images:[]
             },
             countries:{},
             states:{},
@@ -243,103 +219,51 @@ export default {
         });
     },
         getStates() {
-      axios.get(  `https://test-api.citisquare.africa/api/countries/${this.productDetails.country_id}/states`)
+      axios.get(  `https://test-api.citisquare.africa/api/countries/${this.profile.country_id}/states`)
         .then((response) => {
           this.states = response.data;
           console.log(this.countries);
         });
     },
-        getCities() {
-      axios.get(  `https://test-api.citisquare.africa/api/states/${this.productDetails.state_id}/cities`)
+    getCities() {
+      axios.get(  `https://test-api.citisquare.africa/api/states/${this.profile.state_id}/cities`)
         .then((response) => {
           this.cities = response.data;
           console.log(this.cities);
         });
     },
+    
         async choose(event) {
       let value = event.target.value;
-      this.productDetails.country_id = value;
-      console.log(this.productDetails.country_id);
+      this.profile.country_id = value;
+      console.log(this.profile.country_id);
       this.getStates()
     },
     async select(event) {
       let value = event.target.value;
-      this.productDetails.state_id = value;
-      console.log(this.productDetails.state_id);
+      this.profile.state_id = value;
+      console.log(this.profile.state_id);
       this.getCities()
     },
     async mention(event) {
       let value = event.target.value;
-      this.productDetails.city_id = value;
-      console.log(this.productDetails.city_id);
+      this.profile.city_id = value;
+      console.log(this.profile.city_id);
     },
-    async pick(event) {
-      let value = event.target.value;
-      this.productDetails.investment_type = value;
-      console.log(this.productDetails.investment_type);
-    },
-    async think(event) {
-      let value = event.target.value;
-      this.productDetails.in_development = value;
-      console.log(this.productDetails.in_development);
-    },
-     update() {
-    //      var input = event.target;
-    //   this.business_info.images = input.files[0];
-    //   console.log(this.business_info.images);
-         let file = event.target.files;
-      for(let i = 0; i<file.length; i++)
-	{
-		this.productDetails.images.push(file[i]);
-    }
-      console.log(this.productDetails.images);
-    },
-    upload() {
-    //     var input = event.target;
-    //   this.business_info.videos = input.files[0];
-    //   console.log(this.business_info.videos);
-      let file = event.target.files;
-	for(let i = 0; i<file.length; i++)
-	{
-		this.productDetails.videos.push(file[i]);
-    }
-      
-    //   console.log(this.productDetails.videos);
-    },
-    // submitProductDetails() {
-    //     console.log("images", this.productDetails.images)
-    // },
-    submitProductDetails() {
+    updateProfile() {
       const formData = new FormData();
-      formData.append("name", this.productDetails.name);
-      formData.append("description", this.productDetails.description);
-      formData.append("price", this.productDetails.price);
-      formData.append("minimum_investment", this.productDetails.minimum_investment);
-      formData.append("in_development", this.productDetails.in_development);
-    //   formData.append("videos", this.productDetails.videos);
-      if(this.productDetails.videos.length > 0){
-          for(var i = 0 ; i < this.productDetails.videos.length ; i++){
-            formData.append('videos['+ i + ']', this.productDetails.videos[i]);
-          }
-      }
-      if(this.productDetails.images.length > 0){
-          for(var i = 0 ; i < this.productDetails.images.length ; i++){
-            formData.append('images['+ i + ']', this.productDetails.images[i]);
-          }
-      }
-    //   formData.append("images", this.productDetails.images);
-      formData.append("country_id", this.productDetails.country_id);
-      formData.append("state_id", this.productDetails.state_id);
-      formData.append("city_id", this.productDetails.city_id);
-      formData.append("address", this.productDetails.address);
-      formData.append("investment_type", this.productDetails.investment_type);
-      formData.append("_method", "POST");
-      axios.post(
-          'https://test-api.citisquare.africa/api/merchant/properties/',
+      formData.append("first_name", this.profile.first_name);
+      formData.append("last_name", this.profile.last_name);
+      formData.append("country_id", this.profile.country_id);
+      formData.append("state_id", this.profile.state_id);
+      formData.append("city_id", this.profile.city_id);
+      formData.append("_method", "PATCH");
+      axios.patch(
+          'https://test-api.citisquare.africa/api/auth/users/me/',
           formData, {
               headers : {
                     authorization: `token ${this.auth_token}`,
-                    'Content-Type': 'multipart/form-data'
+                    
                     
                 }
           }
@@ -347,11 +271,11 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.makeToast(
-          "Product Added",
+          "Profile Updated",
          'Success',
           "success"
         );
-        this.productDetails = {}
+        this.profile = {}
         //   this.$router.push('/merchantdashboard/kycsuccess')
         })
         .catch((error) => {

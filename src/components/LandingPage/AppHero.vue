@@ -40,7 +40,7 @@ export default defineComponent({
   position: relative;
   min-height: 200px;
   width: 100%;
-  height: 600px;
+  height: 500px;
   background-image: url("../../assets/images/re.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;

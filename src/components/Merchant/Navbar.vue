@@ -17,24 +17,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <h3>INTRODUCTION</h3>
+            <h3>Dashboard</h3>
           <li class="nav-item mx-md-3">
-            <img src="@/assets/dashicons/timer-start.svg" alt=""><a class="nav-link active" aria-current="page" href="#"
-              >Get Started</a
+            <img src="@/assets/dashicons/home-2.svg" alt=""><a class="nav-link active" aria-current="page" href="/merchantdashboard/dashboard"
+              >Home</a
             >
           </li>
           <li class="nav-item mx-md-3">
-            <img src="@/assets/dashicons/shield-tick.svg" alt=""><a class="nav-link active" aria-current="page" href="#"
+            <img src="@/assets/dashicons/shield-tick.svg" alt=""><a class="nav-link active" aria-current="page" href="/merchantdashboard/kycbusiness"
               >Complete KYC</a
             >
           </li>
-          <h3>DASHBOARD</h3>
-          <li class="nav-item mx-md-3">
-            <img src="@/assets/dashicons/home-2.svg" alt=""><a class="nav-link" href="#">Home</a>
-          </li>
           <h3>PRODUCTS</h3>
           <li class="nav-item mx-md-3">
-            <img src="@/assets/dashicons/receipt-add.svg" alt=""><a class="nav-link" href="#">Add Products</a>
+            <img src="@/assets/dashicons/receipt-add.svg" alt=""><a class="nav-link" href="/merchantdashboard/productdetail">Add Products</a>
           </li>
           <li class="nav-item mx-md-3">
             <img src="@/assets/dashicons/receipt-edit.svg" alt=""><a class="nav-link" href="#">Manage Products</a>
@@ -55,6 +51,11 @@
           <li class="nav-item mx-md-3">
             <img src="@/assets/dashicons/user-edit.svg" alt=""><a class="nav-link" href="#">Profile Settings</a>
           </li>
+          <li class="nav-item mx-md-3">
+            <img src="@/assets/dashicons/user-edit.svg" alt=""><a class="nav-link" href="#">Logout</a>
+          </li>
+
+
          
         </ul>
         
@@ -86,7 +87,7 @@ export default {};
 }
 
 .nav-link {
-  color: #798992;
+  color: #89AFC2;
   font-size: small;
   font-weight: 500;
 }
@@ -112,16 +113,20 @@ ul{
     padding-bottom: 1rem;
 }
 ul h3{
-    color: #798998;
+    color: #FFFFFF;
     font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
+    margin-top: 1rem;
 }
 ul img{
     margin-right: 1rem;
 }
 li{
     display: flex;
+}
+li:hover{
+  background: #50AC95;
 }
 </style>

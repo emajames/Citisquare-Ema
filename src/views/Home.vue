@@ -106,7 +106,7 @@
     </p>
     <form @submit.prevent="submitInfo()" method="post">
       <input type="text" placeholder="Enter your email address" v-model="info.email" />
-      <button type="submit">Join Waiting List</button>
+      <button type="submit">Join List</button>
     </form>
     
   </section>
@@ -115,7 +115,6 @@
 
 <script>
 // @ is an alias to /src
-import axios from "axios";
 import AppHeader from "@/components/AppHeader.vue";
 import SearchTabs from "@/components/LandingPage/SearchTabs.vue";
 import AppHero from "@/components/LandingPage/AppHero.vue";
@@ -138,27 +137,6 @@ export default {
     Offers,
     Merchants,
   },
-  data(){
-    return{
-      info:{
-        email:''
-      }
-    }
-  },
-  methods:{
-    async submitInfo() {
-        try {
-            const response = await axios.post(
-            'https://test-api.citisquare.africa/api/email-subscription/', this.info, 
-            );
-            console.log(response.data);
-           
-        } catch (error) {
-            console.error(error);
-            
-        }
-    },
-  }
 };
 </script>
 
@@ -192,10 +170,9 @@ export default {
   font-family: "Nunito Sans", sans-serif;
 }
 .card {
-  
+  padding: 25px 25px;
   width: 100%;
 }
-
 .card-subtitle {
   font-family: "Recoleta";
 }
@@ -206,7 +183,7 @@ export default {
 .card-logo {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 0.5rem;
+  grid-gap: 1rem;
 }
 .card-logo img {
   background: #ebf5f1;
@@ -234,9 +211,11 @@ export default {
 .beta {
   text-align: center;
   margin-top: 1rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .beta h1 {
   font-size: 50px;
@@ -253,9 +232,6 @@ export default {
   border: 1px solid #000000;
   padding: 7px 10px;
   width: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   height: 60px;
   margin-top: 0.5rem;
   margin-bottom: 1rem;

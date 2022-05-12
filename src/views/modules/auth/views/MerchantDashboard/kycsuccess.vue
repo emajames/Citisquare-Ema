@@ -14,13 +14,15 @@
                 <h3>KYC Information Submitted</h3>
                 <p>Your KYC information has been submitted successfully. In the mean time,
                     add new products to your catalog while awaiting KYC review</p>
-                <button id="da">Dashboard</button> <button class="da">Add Products</button>
+                <button id="da" @click="displayToast()">Dashboard</button> <button class="da">Add Products</button>
             </div>
         </div>
     </div>
 </div>
     
 </template>
+
+
 
 <style scoped>
     *{
@@ -157,6 +159,15 @@ export default {
     components: {
         Sidebar,
         Navbar
+    },
+    methods:{
+        displayToast(){
+           this.makeToast(
+          "Login Successful",
+         'welcome',
+          "success"
+        );
+        }
     }
 }
 </script>
