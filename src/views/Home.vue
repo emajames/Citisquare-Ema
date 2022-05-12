@@ -115,6 +115,7 @@
 
 <script>
 // @ is an alias to /src
+import axios from "axios";
 import AppHeader from "@/components/AppHeader.vue";
 import SearchTabs from "@/components/LandingPage/SearchTabs.vue";
 import AppHero from "@/components/LandingPage/AppHero.vue";
@@ -137,6 +138,33 @@ export default {
     Offers,
     Merchants,
   },
+  data(){
+    return{
+      info:{}
+    }
+  }, 
+  methods:{
+    async submitInfo() {
+        try {
+            const response = await axios.post(
+            'https://test-api.citisquare.africa/api/email-subscription/', this.info, 
+            );
+            console.log(response.data);
+           this.makeToast(
+          "Successfully added to waiting list",
+         'Success',
+          "success"
+        );
+        } catch (error) {
+            console.error(error);
+            this.makeToast(
+          (error),
+         'Please try again later',
+          "Warning"
+        );
+        }
+    },
+  }
 };
 </script>
 
@@ -209,13 +237,10 @@ export default {
   margin-right: 25rem;
 }
 .beta {
+  
+  padding-top: 3rem;
+  height: 50vh;
   text-align: center;
-  margin-top: 1rem;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .beta h1 {
   font-size: 50px;
@@ -235,11 +260,14 @@ export default {
   height: 60px;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .beta button {
   background: #50ac95;
   color: white;
-  padding: 18px 20px;
+  padding: 18px 50px;
   border: none;
 }
 .rent {

@@ -5,12 +5,15 @@ const Search = () => import("../views/Search.vue");
 const SearchResults = () => import("../views/SearchResults.vue");
 const Payment = () => import("../views/Payment.vue");
 const UserDashboard = () => import("../views/UserDashboard/dashboard.vue");
-const MerchantDashboard = () =>
-  import("../views/MerchantDashboard/dashboard.vue");
+const MerchantDashboard = () => import("../views/MerchantDashboard/dashboard.vue");
 const KycProfile = () => import("../views/MerchantDashboard/kycprofile.vue");
 const KycContact = () => import("../views/MerchantDashboard/kyccontact.vue");
 const KycBusiness = () => import("../views/MerchantDashboard/kycbusiness.vue");
 const KycSuccess = () => import("../views/MerchantDashboard/kycsuccess.vue");
+const Properties = () => import("../views/MerchantDashboard/properties.vue");
+const Property = () => import("../views/Properties/_id.vue");
+const Profile = () => import("../views/MerchantDashboard/profile.vue");
+const Wallet = () => import("../views/MerchantDashboard/wallet.vue");
 const ProductDetail = () =>
   import("../views/MerchantDashboard/productdetail.vue");
 const PaymentType = () => import("../views/PaymentType.vue");
@@ -57,9 +60,21 @@ export default [
     meta: { layout: "default" },
   },
   {
+    path: "/merchantdashboard/wallet",
+    name: "Wallet",
+    component: Wallet,
+    meta: { layout: "default" },
+  },
+  {
     path: "/paymenttype",
     name: "paymenttype",
     component: PaymentType,
+    meta: { layout: "default" },
+  },
+  {
+    path: "/properties/:id",
+    name: "Property",
+    component: Property,
     meta: { layout: "default" },
   },
   {
@@ -139,6 +154,18 @@ export default [
     path: "/merchantdashboard/productdetail",
     name: "ProductDetail",
     component: ProductDetail,
+    meta: { layout: "default" },
+  },
+  {
+    path: "/merchantdashboard/properties",
+    name: "Properties",
+    component: Properties,
+    meta: { layout: "default" },
+  },
+  {
+    path: "/merchantdashboard/profile",
+    name: "Profile",
+    component: Profile,
     meta: { layout: "default" },
   },
 ];

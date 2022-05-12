@@ -20,7 +20,7 @@
                     
                 </div>
                 <div class="dash5">
-                    <form method="post" @submit.prevent="submitKyc()">
+                    <form method="post" @submit.prevent="submitKyc()" enctype="multipart/form-data">
                         <h3>Business Information</h3>
                         <label for="Business Name">Business/Organisation Name *</label>
                         <input type="text" required  v-model="business_info.business_name">
@@ -65,7 +65,7 @@
                         <label for="logo"> Add a Logo </label>
                         <input type="file" required  @change="uploadLogo()">
                         <label for="documents">Add Business documents </label>
-                        <input type="file" required multiple @change="uploadDocuments()" >
+                        <input type="file" required multiple  @change="uploadDocuments">
                         <div>
                             <button type="submit">Submit</button>
                         </div>
@@ -214,13 +214,14 @@ export default {
                 country_id:'',
                 state_id:'',
                 city_id:'',
-                
+                documents:null,
             },
             countries:{},
             
             states:{},
            
             cities:{},
+            
             
         }
         
@@ -299,9 +300,9 @@ export default {
       console.log(this.business_info.logo);
     },
     uploadDocuments() {
-      var input = event.target;
-      this.business_info.documents = input.files;
-      console.log(this.business_info.documents);
+    this.business_info.documents = event.target.files;
+    console.log(this.business_info.documents)
+   
     },
     submitKyc() {
       const formData = new FormData();
@@ -316,30 +317,42 @@ export default {
       formData.append("email", this.business_info.email);
       formData.append("logo", this.business_info.logo);
       formData.append("rc_number", this.business_info.rc_number);
-      formData.append("uploads", this.business_info.documents);
+    //   formData.append("uploads", this.business_info.uploads);
+       if(this.business_info.documents.length > 0){
+          for(var i = 0 ; i < this.business_info.documents.length ; i++){
+            formData.append('documents', this.business_info.documents[i]);
+          }
+      }
+    // for (const i of Object.keys(this.uploads)) {
+    //         formData.append('uploads', this.uploads[i])
+    //       }
+    // if (this.business_info.uploads instanceof FileList || this.business_info.uploads instanceof Array) {
+    //         for (let i = 0; i < this.business_info.uploads.length; i++) {
+    //             formData.append('uploads', this.business_info.uploads[i])
+    //         }
+    //     }
       formData.append("_method", "PUT");
       axios.put(
           'https://test-api.citisquare.africa/api/merchant/kyc-submission/',
           formData, {
               headers : {
                     authorization: `token ${this.auth_token}`,
-                    
+                    'Content-Type':'multipart/form-data' 
                 }
           }
         )
         .then((res) => {
           console.log(res.data);
           this.makeToast(
-          "KYC sent",
+          "KYC Added",
          'Success',
           "success"
         );
         this.business_info = {}
-        //   this.$router.push('/merchantdashboard/kycsuccess')
+        this.$router.push('/merchantdashboard/dashboard')
         })
         .catch((error) => {
           console.log(error);
-          this.business_info = {}
           this.makeToast(
           (error),
           "Please Try Again Later",

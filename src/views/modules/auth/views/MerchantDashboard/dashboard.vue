@@ -8,30 +8,31 @@
         <div class="nav_cont d-flex">
             <h2>Dashboard</h2>
             <div class="btn_items">
-                <button class="inactive">inactive</button>
-                 <FontAwesomeIcon :icon="['fas', 'bell']" class="icon" />
+                <button class="inactive">Inactive</button>
+                 <!-- <FontAwesomeIcon :icon="['far', 'bell']" class="icon" /> -->
             </div>
         </div>
         <div class="dash2">
             <div class="dash3">
-                <h3>Welcome to Citysquare</h3>
-                <p>Your merchant account is currently inactive, complete your kyc to change your account status</p>
+                <h3>Welcome, {{user.first_name}}.</h3>
+                <p v-if="kyc">Your merchant account is currently inactive, complete your kyc to change your account status</p>
             </div>
             <div class="dash4">
                 <a href="/merchantdashboard/kycbusiness">
                 <div class="dash41">
                     <img src="@/assets/dashicons/block.svg" alt="">
-                    <h5>Complete your KYC</h5>
+                    <h5>Add your KYC</h5>
                     <p>To be able to publish products, it is required that you should complete the KYC process</p>
-                    <button>Complete KYC</button>
+                    <button>Add KYC</button>
                 </div>
                 </a>
-                <div class="dash41">
-                    <img src="@/assets/dashicons/block.svg" alt="">
-                    <h5>Create Products</h5>
-                    <p>Create products for your store and publish them, after completing KYC</p>
-                    <button>Create Products</button>
-                </div>
+                    <div class="dash41" >
+                        <img src="@/assets/dashicons/block.svg" alt="">
+                        <h5>Create Products</h5>
+                        <p>Create products for your store and publish them, after completing KYC</p>
+                    <button @click="transfer">Create Products</button>
+                    </div>
+                
                 <div class="dash41">
                     <img src="@/assets/dashicons/block.svg" alt="">
                     <h5>Contact Support</h5>
@@ -68,9 +69,6 @@
         color: rgba(187, 28, 28, 1);
 ;
     }
-    /* .btn_items{
-        
-    } */
     .show{
         display: none;
     }
@@ -87,7 +85,7 @@
     .dash3{
         text-align: center;
         margin-top: -1rem;
-        padding-top: 9rem;
+        padding-top: 5rem;
     }
     .dash3 h3{
         font-size: 25px;
@@ -143,8 +141,9 @@
     }
     .dash41 button:hover{
         background: #50AC95;
-        color: white;
+        color: white !important;
     }
+    
 
 
 
@@ -198,12 +197,52 @@
 </style>
 
 <script>
+import axios from "axios";
 import Sidebar from "@/components/Merchant/SideBar.vue";
 import Navbar from "@/components/Merchant/Navbar.vue";
+import { mapState } from "vuex";
 export default {
     components: {
         Sidebar,
         Navbar
+    },
+    data(){
+        return{
+            user:{ },
+            kyc: true,
+        }
+    },
+    computed:{
+            ...mapState('auth',['auth_token'])
+    },
+    mounted(){
+        this.getUser()
+    },
+    methods:{
+        transfer(){
+            if(this.kyc === true){
+                alert('Please add your kyc first')
+            }else{
+                this.$router.push('/merchantdashboard/productdetail')
+            }
+        },
+        getUser() {
+      axios.get( "https://test-api.citisquare.africa/api/auth/users/me",
+      {
+           headers : {
+                    authorization: `token ${this.auth_token}`,
+                }
+      })
+        .then((response) => {
+          this.user = response.data;
+          if (this.user.merchant.address == null){
+              this.kyc=true;
+          }else{
+              this.kyc=false
+          }
+          console.log(this.user.merchant.address);
+        });
+    },
     }
 }
 </script>

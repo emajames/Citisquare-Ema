@@ -63,9 +63,9 @@
                          v-for="(item, index) in cities" :key="index">{{item.name}}</option>
                         </select>
                         <label for="Videos"> Add Videos </label>
-                        <input type="file" required  class="form-control" multiple @change="upload()">
+                        <input type="file" required  class="form-control" multiple @change="uploadVideos()">
                         <label for="Images">Add Images </label>
-                        <input type="file" required  class="form-control" multiple  @change="update()">
+                        <input type="file" required  class="form-control" multiple  @change="uploadImages()">
                         <div>
                             <button type="submit">Add Product</button>
                         </div>
@@ -218,8 +218,8 @@ export default {
                 country_id:'',
                 state_id:'',
                 city_id:'',
-                videos:[],
-                images:[]
+                videos:null,
+                images:null
             },
             countries:{},
             states:{},
@@ -283,32 +283,14 @@ export default {
       this.productDetails.in_development = value;
       console.log(this.productDetails.in_development);
     },
-     update() {
-    //      var input = event.target;
-    //   this.business_info.images = input.files[0];
-    //   console.log(this.business_info.images);
-         let file = event.target.files;
-      for(let i = 0; i<file.length; i++)
-	{
-		this.productDetails.images.push(file[i]);
-    }
-      console.log(this.productDetails.images);
+     uploadImages() {
+         this.productDetails.images = event.target.files;
+        console.log(this.productDetails.images)
     },
-    upload() {
-    //     var input = event.target;
-    //   this.business_info.videos = input.files[0];
-    //   console.log(this.business_info.videos);
-      let file = event.target.files;
-	for(let i = 0; i<file.length; i++)
-	{
-		this.productDetails.videos.push(file[i]);
-    }
-      
-    //   console.log(this.productDetails.videos);
+    uploadVideos() {
+        this.productDetails.videos = event.target.files;
+        console.log(this.productDetails.videos)
     },
-    // submitProductDetails() {
-    //     console.log("images", this.productDetails.images)
-    // },
     submitProductDetails() {
       const formData = new FormData();
       formData.append("name", this.productDetails.name);
@@ -316,18 +298,16 @@ export default {
       formData.append("price", this.productDetails.price);
       formData.append("minimum_investment", this.productDetails.minimum_investment);
       formData.append("in_development", this.productDetails.in_development);
-    //   formData.append("videos", this.productDetails.videos);
       if(this.productDetails.videos.length > 0){
           for(var i = 0 ; i < this.productDetails.videos.length ; i++){
-            formData.append('videos['+ i + ']', this.productDetails.videos[i]);
+            formData.append('videos', this.productDetails.videos[i]);
           }
       }
       if(this.productDetails.images.length > 0){
           for(var i = 0 ; i < this.productDetails.images.length ; i++){
-            formData.append('images['+ i + ']', this.productDetails.images[i]);
+            formData.append('images', this.productDetails.images[i]);
           }
       }
-    //   formData.append("images", this.productDetails.images);
       formData.append("country_id", this.productDetails.country_id);
       formData.append("state_id", this.productDetails.state_id);
       formData.append("city_id", this.productDetails.city_id);

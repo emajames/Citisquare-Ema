@@ -38,7 +38,7 @@
       </div>
       <hr />
       <div class="form1">
-        <h2 class="create pb-4 pb-4">Create An Account</h2>
+        <h2 class="create pb-4 pb-4">Create A Customer Account</h2>
         <!-- <p>Please enter the email associated with your account and we’ll send an email with instructions to reset your password.</p> -->
       </div>
 

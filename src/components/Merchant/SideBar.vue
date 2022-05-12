@@ -22,14 +22,14 @@
                 
             </div>
             <div class="one21">
-                <a href="#"><img src="@/assets/dashicons/receipt-edit.svg" alt=""><p> Manage Products</p></a>
+                <a href="/merchantdashboard/properties"><img src="@/assets/dashicons/receipt-edit.svg" alt=""><p> Manage Products</p></a>
             </div>
             
         </div>
         <div class="one2">
             <h3>Wallets</h3>
             <div class="one21">
-                <a href="#"><img src="@/assets/dashicons/wallet-add.svg" alt=""><p> Fund Wallet</p></a>
+                <a href="/merchantdashboard/wallet"><img src="@/assets/dashicons/wallet-add.svg" alt=""><p> Fund Wallet</p></a>
                 
             </div>
             <div class="one21">
@@ -45,7 +45,7 @@
         <div class="one2">
             <h3>Settings</h3>
             <div class="one21">
-                <a href=""><img src="@/assets/dashicons/user-edit.svg" alt=""><p> Profile Settings</p></a>
+                <a href="/merchantdashboard/profile"><img src="@/assets/dashicons/user-edit.svg" alt=""><p> Profile Settings</p></a>
                 
             </div>
             <div class="one21" @click.prevent="logOut()">
@@ -97,7 +97,7 @@ export default {
         this.makeToast(
           "You've Logged Out",
           `Till Next Time`,
-          "warning"
+          "success"
         );
         this.$router.push("/");
       } catch (error) {

@@ -36,16 +36,20 @@ export default defineComponent({
 </script>
 
 <style>
+.hero{
+  margin-top: -1rem;
+}
 .hero .carousel__item {
   position: relative;
   min-height: 200px;
   width: 100%;
-  height: 500px;
+  height: 600px;
   background-image: url("../../assets/images/re.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+ 
 }
 
 .hero .carousel_card {

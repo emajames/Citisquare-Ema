@@ -1,71 +1,63 @@
 <template>
     <div class="one">
-        <div></div>
-        <div class="one1">
-            
-            
-       
+         <div class="one1">
+        <img src="@/assets/concept.png" alt="">
         </div>
-         <div class="grid1">
-            <router-link to="/signals" class="dropdown-item rout link" >
-            <img src="/img/logo/chart.png" alt="" srcset="" class="icon">
-            <span class="two"> Signals</span></router-link>
-        </div>
-         <div class="grid1">
-            <router-link to="/resources" class="dropdown-item rout link" >
-            <img src="/img/logo/book.png" alt="" srcset="" class="icon">
-            <span class="two"> Resources</span></router-link>
-        </div>
-        <div class="grid1">
-            <nuxt-link to="brokers" class="dropdown-item link rout" >
-            <img src="/img/logo/case.png" alt="" srcset="" class="icon">
-            <span class="two">Management</span></nuxt-link>
-        </div>
-        <div class="grid1">
-            <nuxt-link to="accounts" class="dropdown-item link rout" >
-            <img src="/img/logo/case.png" alt="" srcset="" class="icon">
-            <span class="two">Managed Accounts</span></nuxt-link>
-        </div>
-        <div class="grid1">
-            <router-link to="/transactions" class="dropdown-item rout link" >
-            <img src="/img/logo/card.png" alt="" srcset="" class="icon">
-            <span class="two"> Transactions</span></router-link>
-        </div>
-        <div class="grid1">
-            <router-link to="/settings" class="dropdown-item rout link" >
-            <img src="/img/logo/settings.png" alt="" srcset="" class="icon">
-            <span class="two"> Settings</span></router-link>
-        </div>
-        <div class="grid1" @click="logOut">
-            <div class="dropdown-item rout link">
-                <img src="/img/icon/logout.svg" alt="" srcset="" class="icon">
-            <span class="two"> Log Out</span>
+        
+
+        <div class="one3">
+            <div class="one2">
+            <div class="one21">
+                <a href="/merchantdashboard/dashboard"><img src="@/assets/dashicons/Home.png" alt=""><p> Dashboard</p></a>
+            </div>
+             <div class="one21">
+                 <a href="/merchantdashboard/kycbusiness"><img src="@/assets/dashicons/spa2.png" alt=""><p>Spa</p></a>
             </div>
             
         </div>
-        <!-- <div class="grid1">
-            <router-link to="/addstudent" class="dropdown-item link" >
-            <font-awesome-icon class="icon" :icon="['fas', 'headset']" />
-            <span class="two"> Support</span></router-link>
-        </div> -->
+        <div class="one2">
+            <div class="one21">
+                <a href="/merchantdashboard/productdetail"><img src="@/assets/dashicons/shortlet.png" alt=""><p>Shortlets & Apartments</p></a>
+                
+            </div>
+            <div class="one21">
+                <a href="/merchantdashboard/properties"><img src="@/assets/dashicons/tours.png" alt=""><p>Tours and Vacations</p></a>
+            </div>
+            
+        </div>
+        <div class="one2">
+            
+            <div class="one21">
+                <a href="/merchantdashboard/wallet"><img src="@/assets/dashicons/real.png" alt=""><p>Real Estate</p></a>
+                
+            </div>
+            <div class="one21">
+                <a href="#"><img src="@/assets/dashicons/fin.png" alt=""><p>Finacial Services</p></a>
+                
+            </div>
+            <div class="one21">
+                <a href="#"><img src="@/assets/dashicons/wallet.png" alt=""><p> Wallet</p></a>
+                
+            </div>
+            <div class="one21">
+                <a href="#"><img src="@/assets/dashicons/settings.png" alt=""><p>Settings</p></a>
+                
+            </div>
+            
+        </div>
+        </div>
+        
+        
+        
+        
+        
         <div>
             
         </div>
             
 
         
-        <!-- <div class="grid1">
-            <router-link to="/viewstudents" class="dropdown-item" ><span class="two">View Students</span></router-link>
-        </div> -->
-    
         
-        <!-- <hr>
-        <div class="grid1">
-            <router-link to="/addsession" class="dropdown-item" ><span class="two">Add Session</span></router-link>
-        </div>
-        <div class="grid1">
-            <router-link to="/viewsessions" class="dropdown-item" ><span class="two">View Sessions</span></router-link>
-        </div> -->
          
         
     </div>
@@ -73,16 +65,28 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-   
+   computed: {
+    ...mapState("auth", ["user"]),
+    ...mapState("auth", ["auth_token"]),
+  },
     methods:{
-        async logOut() {
-            await this.$auth.logout();
-            this.$message({
-                message: "You Logged out successfully!",
-                type: "success",
-            });this.$router.push("/login");
-        },
+        ...mapActions("auth", ["logout"]),
+         async logOut() {
+      try {
+        let res = await this.logout;
+        console.log(res);
+        this.makeToast(
+          "You've Logged Out",
+          `Till Next Time`,
+          "success"
+        );
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+      }
+    },
     },
 };
 </script>
@@ -92,100 +96,84 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Nunito, sans-serif;
 }
-
-.icon{
-    width: 20px;
-
-}
-.icons{
-    font-size: 15px;
-    
-    margin-left: 10px;
-}
-
 .one{
     width: 20%;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    background: #FFFFFF;
+    background: #EFF7FB !important;
     box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
-    padding-top: 5.15rem;
+    padding-top: 1rem;
     z-index: 1;
     
 
 }
-.two{
-    font-size: 20px;
-    color: #334D6E;
-    padding: 7px 5px;
-    font-weight:normal;
-}
-
-
-
-
 
 .one1{
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: left;
-    padding-top: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: center;
 }
 .one1 img{
-    margin-bottom: 30px;
-    padding-top: 20px;
+    width: 5rem;
 }
-.grid1{
-    text-align: left;
-    margin-left: 15px;
-    margin-right: 10px;
-    grid-gap: 0rem;
-    margin-bottom: 30px;
-    cursor: pointer;
-    
+.one1 h3{
+    font-size: 14px;
+    color: rgba(8, 41, 58, 0.7);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
-.rout{
-    padding: 10px 5px;
+.one1 p{
+    color: rgba(8, 41, 58, 0.7);
+    font-weight: 400;
+    font-size: 14px;
 }
-
-.grid1 img{
-    margin-right: 20px;
+#b{
+    margin-bottom: 0.5rem;
 }
-.grid1 p{
-    font-size: 20px;
-    color: #334D6E;
-
+.one2 h3{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    color: rgba(8, 41, 58, 0.7);
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
 }
-.three{
-    padding-left: 2rem;
+.one21{
+    margin-top: 1rem;
 }
-.three p{
-    font-size: 17px;
-    color: #334D6E;
-    
-}
-.iconz{
-    font-size: 15px;
-    margin-right: 5px;
-    
-}
-hr{
-    background: #EBEFF2 !important;
-    margin-bottom: 30px;
-    
-}
-p.hover{
+.one21 a{
+    padding-left:2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: grid;
     text-decoration: none;
+    grid-template-columns: 1fr 6fr;
 }
-.btn1{
-    outline: none;
+.one21:hover{
+    background: #50AC95;
 }
-.dropdown{
-    text-align: left !important;
+.one21 img{
+    width: 1rem;
+    
 }
+.one21 p{
+    color: rgba(8, 41, 58, 0.7);
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: -2px;
+    
+}
+.one3{
+    margin-top: 2rem;
+}
+
+
+
 
 @media(max-width: 576px){
     .one{

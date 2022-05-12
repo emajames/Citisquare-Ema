@@ -48,7 +48,7 @@
           <FontAwesomeIcon :icon="['fas', 'envelope']" class="icon" />
           <input
             class="Field"
-            type="text"
+            type="email"
             placeholder="Your Email"
             v-model="loginDetails.email"
             required
@@ -59,7 +59,7 @@
           <FontAwesomeIcon :icon="['fas', 'lock']" class="icon" />
           <input
             class="Field"
-            type="text"
+            type="password"
             placeholder="Password"
             v-model="loginDetails.password"
             required

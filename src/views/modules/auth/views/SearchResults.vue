@@ -40,97 +40,29 @@
       </div>
 
       <div>
-           <h6 class="pt-4 properties">41 Properties in Lekki,Lagos</h6>
+           <h6 class="pt-4 properties">Available Properties</h6>
       </div>
 
       <div class="items_prop">
-          <div class="img_prop">
-              <img class="img_prop" src="@/assets/property.svg" alt="">
+          <div class="img_prop" v-for="(item, index) in properties" :key="index"  @click="viewProperty(item.id)">
+              
+              <img  src="@/assets/property.svg" alt="">
                 <div>
-              <h3>Nike Estate</h3>
-              <p>Lekki,Lagos</p> 
+              <h3>{{item.name}}</h3>
+              <p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.country}}</p> 
+              <p>{{item.description}}</p> 
                <p class="four_star">&#9733; &#9733; &#9733; &#9733; <span class="one_star">&#9733;</span>  <span class="review">110 Reviews</span></p>
-               <p class="start">Starting from <span class="cash">N605,000</span></p>
+               <p class="start">Starting from <span class="cash">N{{item.price}}</span></p>
           </div>
           </div>
 
           
 
-           <div class="img_prop ">
-              <img  src="@/assets/property.svg" alt="">
-             <div>
-              <h3>Nike Estate</h3>
-              <p>Lekki,Lagos</p> 
-               <p class="four_star">&#9733; &#9733; &#9733; &#9733; <span class="one_star">&#9733;</span>  <span class="review">110 Reviews</span></p>
-               <p class="start">Starting from <span class="cash">N605,000</span></p>
-          </div>
-          </div>
-
-          <div class="img_prop">
-              <img class="img_prop" src="@/assets/property.svg" alt="">
-                <div>
-              <h3>Nike Estate</h3>
-              <p>Lekki,Lagos</p> 
-               <p class="four_star">&#9733; &#9733; &#9733; &#9733; <span class="one_star">&#9733;</span>  <span class="review">110 Reviews</span></p>
-               <p class="start">Starting from <span class="cash">N605,000</span></p>
-          </div>
-          </div>
+           
 
           
 
-           <div class="img_prop ">
-              <img  src="@/assets/property.svg" alt="">
-             <div>
-              <h3>Nike Estate</h3>
-              <p>Lekki,Lagos</p> 
-               <p class="four_star">&#9733; &#9733; &#9733; &#9733; <span class="one_star">&#9733;</span>  <span class="review">110 Reviews</span></p>
-               <p class="start">Starting from <span class="cash">N605,000</span></p>
-          </div>
-          </div>
-
-          <div class="img_prop">
-              <img class="img_prop" src="@/assets/property.svg" alt="">
-                <div>
-              <h3>Nike Estate</h3>
-              <p>Lekki,Lagos</p> 
-               <p class="four_star">&#9733; &#9733; &#9733; &#9733; <span class="one_star">&#9733;</span>  <span class="review">110 Reviews</span></p>
-               <p class="start">Starting from <span class="cash">N605,000</span></p>
-          </div>
-          </div>
-
-          
-
-           <div class="img_prop ">
-              <img  src="@/assets/property.svg" alt="">
-             <div>
-              <h3>Nike Estate</h3>
-              <p>Lekki,Lagos</p> 
-               <p class="four_star">&#9733; &#9733; &#9733; &#9733; <span class="one_star">&#9733;</span>  <span class="review">110 Reviews</span></p>
-               <p class="start">Starting from <span class="cash">N605,000</span></p>
-          </div>
-          </div>
-
-          <div class="img_prop">
-              <img class="img_prop" src="@/assets/property.svg" alt="">
-                <div>
-              <h3>Nike Estate</h3>
-              <p>Lekki,Lagos</p> 
-               <p class="four_star">&#9733; &#9733; &#9733; &#9733; <span class="one_star">&#9733;</span>  <span class="review">110 Reviews</span></p>
-               <p class="start">Starting from <span class="cash">N605,000</span></p>
-          </div>
-          </div>
-
-          
-
-           <div class="img_prop ">
-              <img  src="@/assets/property.svg" alt="">
-             <div>
-              <h3>Nike Estate</h3>
-              <p>Lekki,Lagos</p> 
-               <p class="four_star">&#9733; &#9733; &#9733; &#9733; <span class="one_star">&#9733;</span>  <span class="review">110 Reviews</span></p>
-               <p class="start">Starting from <span class="cash">N605,000</span></p>
-          </div>
-          </div>
+           
 
          
 
@@ -141,12 +73,45 @@
 </template>
 
 <script>
-export default {
+import axios from "axios";
 
+export default {
+    components: {
+        
+    },
+    data(){
+        return{
+            properties:{}
+        }
+    },
+    mounted(){
+        this.getProperties()
+    },
+    computed:{
+            
+    },
+    methods:{
+        getProperties() {
+      axios.get( "https://test-api.citisquare.africa/api/properties/")
+        .then((response) => {
+          this.properties = response.data.results;
+          console.log(this.properties);
+        });
+    },
+    viewProperty(property) {
+      this.$router.push(`/properties/${property}`);
+    },
+       
+    }
 }
 </script>
 
 <style>
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .estate {
     padding-top: 3rem;
     font-weight: 700;
@@ -218,8 +183,12 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr ;
     column-gap: 1rem;
+    row-gap: 2rem;
 }
 
+.img_prop p{
+    margin-top: -0.8rem;
+}
 .img_prop img{
     width: 100%;
 }
@@ -237,7 +206,7 @@ button {
 }
 .start {
      color: #07354d;
-     padding-top: 1rem;
+     
 }
 .cash {
     color: #1686C1;

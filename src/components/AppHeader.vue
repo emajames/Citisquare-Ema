@@ -23,7 +23,7 @@
             >
           </li>
           <li class="nav-item mx-md-3">
-            <a class="nav-link" href="#">Real Estate</a>
+            <a class="nav-link" href="/search-results">Real Estate</a>
           </li>
           <li class="nav-item mx-md-3">
             <a class="nav-link" href="#">Financial Services</a>
