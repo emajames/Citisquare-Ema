@@ -129,7 +129,7 @@ onMounted(() => {
 });
 </script>
 
-<style>
+<style scoped>
 .realEstate {
   /* width: 81.5%; */
 }
@@ -165,7 +165,7 @@ onMounted(() => {
   fill: #292d32 !important;
 }
 .realEstate {
-  background: #50a791;
+  
   background: #50ac95;
   padding: 2rem 0;
 }

@@ -171,7 +171,7 @@ onMounted(() => {
   font-size: small;
 }
 .realEstate {
-  background: #f1fefb !important;
+  
   padding: 2rem 0;
 }
 .invest {

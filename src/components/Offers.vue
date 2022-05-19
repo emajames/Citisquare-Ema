@@ -154,7 +154,7 @@ onMounted(() => {
   fill: #292d32 !important;
 }
 .realEstate{
-    background: #F1FEFB !important;
+    
     padding: 2rem 0;
 }
 .invest{

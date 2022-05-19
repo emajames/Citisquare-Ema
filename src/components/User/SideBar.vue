@@ -155,7 +155,7 @@ export default {
     grid-template-columns: 1fr 6fr;
 }
 .one21:hover{
-    background: #50AC95;
+    background: #CEEBFB;
 }
 .one21 img{
     width: 1rem;
