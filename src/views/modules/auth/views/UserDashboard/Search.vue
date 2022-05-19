@@ -13,32 +13,185 @@
           <div class="" >
               <p>Location</p>
               <div class="location">
-                  <FontAwesomeIcon :icon="['fas','location-dot']" class="icon" />
-                  <input type="text" placeholder="Lekki,Lagos">
+                  <!-- <FontAwesomeIcon :icon="['fas','location-dot']" class="icon" />
+                  <input type="text" placeholder="Lekki,Lagos"> -->
+                  <div class="input-group">
+                   <select class="form-select form" id="inputGroupSelect01">
+                     <option selected>N 300,000</option>
+                     <option value="1">One</option>
+                     <option value="2">Two</option>
+                     <option value="3">Three</option>
+                  </select>
+                </div>
               </div>  
           </div>
 
          <div class="" >
               <p>Category</p>
               <div class="location">
-                  <FontAwesomeIcon :icon="['fas', 'chevron-down']" class="icons" />
-                  <input type="text" placeholder="Lekki,Lagos">
-              </div>  
+                  <!-- <FontAwesomeIcon :icon="['fas','location-dot']" class="icon" />
+                  <input type="text" placeholder="Lekki,Lagos"> -->
+                  <div class="input-group">
+                   <select class="form-select form" id="inputGroupSelect01">
+                     <option selected>Single Buyer</option>
+                     <option value="1">One</option>
+                     <option value="2">Two</option>
+                     <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
           </div>
 
            <div class="" >
               <p>Sub Category</p>
-              <div class="location">
-                  <FontAwesomeIcon :icon="['fas', 'chevron-down']" class="icons" />
-                  <input type="text" placeholder="Lekki,Lagos">
-              </div>  
+               <div class="location">
+                  <!-- <FontAwesomeIcon :icon="['fas','location-dot']" class="icon" />
+                  <input type="text" placeholder="Lekki,Lagos"> -->
+                  <div class="input-group">
+                   <select class="form-select form" id="inputGroupSelect01">
+                     <option selected></option>
+                     <option value="1">One</option>
+                     <option value="2">Two</option>
+                     <option value="3">Three</option>
+                  </select>
+                </div>
+              </div> 
           </div>
               <div>
                   <button>Search</button>
               </div>        
       </div>
       <div class="pt-3">
-          <h3 class="fin">30 Financial providers that match your search</h3>
+          <h3 class="fin pt-1">30 Financial providers that match your search</h3>
+          <div class="container kuda pt-4">
+       <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>     
+       </div>
+
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class ="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span  class="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+
+         <div class="">
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span  class="review"><u>110 Reviews</u></span></div>
+            </div>     
+       </div>
+
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+        
+
+         <div class="">
+            <div class="box-kuda">
+               <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>     
+       </div>
+
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+        <div>
+            <div class="box-kuda">
+                <img src="@/assets/images/design.jpg" alt="" class="img-kud">
+            </div>
+            <div>
+                <h6 class="pt-2 bnk">Kuda Bank</h6>
+                <p class="amount pt-1">NGN 20K-NGN 900M</p>
+                <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9734; <span class="review"><u>110 Reviews</u></span></div>
+            </div>
+        </div>
+          </div>
+         
       </div>
 
         </div>
@@ -82,12 +235,12 @@
         margin-left: 20%;
         width: 80%;
     }
-    .dash2{
-        /* background: #FAFBFA; */
+    /* .dash2{
+       
         height: 100vh;
         width: 100%;
         margin-top: 1rem;
-    }
+    } */
     .search {
     padding-top: 1rem;
     font-weight: 700;
@@ -99,12 +252,12 @@
 .box {
     /* border: 0.5px #e0e8ec solid; */
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);;
-    height: 135px;
+    height: 100px;
     padding: 15px 15px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
     border-radius: 3px;
 }
 .box p{
@@ -116,6 +269,8 @@
     display: flex;
     position: relative;
     
+}.form{
+   padding: 8px 8px;
 }
 
 .location input{
@@ -139,7 +294,7 @@
 }
 button {
     width: 100%;
-    margin-top: 1.5rem;
+    margin-top: 1.1rem;
     padding: 4px 10px;
     outline: none;
     border: none;
@@ -154,24 +309,101 @@ button {
     letter-spacing: -0.01em;
     color: #08293A;
 }
+.kuda {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 2rem;
+    row-gap: 1rem;
+
+   
+}
+.box-kuda {
+    width: 100%;
+    height: 10rem;
+    background: #3F276A;
+    border-radius: 2px;
+}
+.bnk {
+    font-weight: 600;
+    font-size: 13px;
+}
+.amount{
+    font-size: 12px;
+}
+.stars {
+    color: rgba(22, 134, 193, 1);
+
+}
+ .review{
+    color: rgba(7, 53, 77, 1);
+    font-weight: 400;
+    font-size: 12px;
+}.img-kud {
+    width: 100%;
+    height: 10rem;
+}
     
 
 
 
     @media(max-width:576px){
+        .nav_cont{
+        padding: 20px 10px;
+    }
         .dash1{
         margin-left: 0%;
         width: 100%;
+        margin-top: 4rem;
     }
-        .dash2{
+        /* .dash2{
         background: #FAFBFA;
         height: 100vh;
         width: 100%;
-    }
+    } */
   
         .show{
         display: block;
     }
+    .box {
+    /* border: 0.5px #e0e8ec solid; */
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);;
+    height: auto;
+    padding: 15px 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    margin-top: 1.5rem;
+    border-radius: 3px;
+}
+    .icon {
+   position: absolute;
+   left: 13rem;
+   top: 0.8rem;
+   color: #cad4dd;
+}
+.icons {
+   position: absolute;
+   left: 13rem;
+   top: 0.8rem;
+   color: #cad4dd;
+}
+    button {
+    width: 100%;
+    margin-top: 0rem;
+    padding: 4px 10px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    height: 45px;
+    background: rgba(22, 134, 193, 1);
+    color: #fff;
+}
+    .kuda {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 2rem;
+   
+}
     }
 
 
@@ -179,12 +411,13 @@ button {
         .dash1{
         margin-left: 0%;
         width: 100%;
+        margin-top: 4rem;
     }
-        .dash2{
+        /* .dash2{
         background: #FAFBFA;
         height: 100vh;
         width: 100%;
-    }
+    } */
         .show{
         display: block;
     }
